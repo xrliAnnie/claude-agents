@@ -20,13 +20,26 @@ cp agents/*.md ~/.claude/agents/
 
 ## Available Agents
 
+### Development Team
 - **Backend-Developer**: Expert backend development with refactoring capabilities (staff engineer, 15+ YOE)
 - **Frontend-Developer**: Expert frontend development with refactoring capabilities (staff engineer, 15+ YOE)
-- **content-writer**: Content writing assistance
+- **Mobile-Developer**: iOS and Android development expertise (staff engineer, 15+ YOE)
+- **Data-Engineer**: Data pipelines, warehousing, and analytics infrastructure (staff engineer, 15+ YOE)
+
+### Infrastructure & Operations
+- **DevOps-SRE**: Infrastructure automation, CI/CD, and site reliability (staff engineer, 15+ YOE)
+- **Security-Engineer**: Enterprise security auditing and vulnerability assessment
+
+### Quality & Testing
+- **QA-Test-Engineer**: Test automation, performance testing, and quality assurance (staff engineer, 15+ YOE)
+
+### Product & Design
 - **UI/UX**: UI/UX design and frontend architecture assistance
 - **PM-PRD**: Product requirements document writing (staff PM level)
 - **PM-Architecture**: Project architecture and development planning (staff PM level)
-- **Security-Engineer**: Enterprise security auditing and vulnerability assessment
+
+### Content & Documentation
+- **content-writer**: Content writing assistance
 
 ## Usage
 
