@@ -24,7 +24,7 @@ cp agents/*.md ~/.claude/agents/
 - **content-writer**: Content writing assistance
 - **UI/UX**: UI/UX design and frontend architecture assistance
 - **PM-PRD**: Product requirements document writing (staff PM level)
-- **project-task-planner**: Project planning and task breakdown
+- **PM-Architecture**: Project architecture and development planning (staff PM level)
 - **security**: Security audit assistance
 - **vibe-coding-coach**: Coding guidance and coaching
 
