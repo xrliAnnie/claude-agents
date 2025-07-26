@@ -20,6 +20,8 @@ cp agents/*.md ~/.claude/agents/
 
 ## Available Agents
 
+- **Backend-Developer**: Expert backend development (staff engineer, 15+ YOE)
+- **Frontend-Developer**: Expert frontend development (staff engineer, 15+ YOE)
 - **code-refactorer**: Code refactoring assistance
 - **content-writer**: Content writing assistance
 - **UI/UX**: UI/UX design and frontend architecture assistance
