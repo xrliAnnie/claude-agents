@@ -25,6 +25,7 @@ cp agents/*.md ~/.claude/agents/
 - **Frontend-Developer**: Expert frontend development with refactoring capabilities (staff engineer, 15+ YOE)
 - **Mobile-Developer**: iOS and Android development expertise (staff engineer, 15+ YOE)
 - **Data-Engineer**: Data pipelines, warehousing, and analytics infrastructure (staff engineer, 15+ YOE)
+- **Data-Scientist**: ML/AI expertise with educational transparency (staff data scientist, 15+ YOE)
 
 ### Infrastructure & Operations
 - **DevOps-SRE**: Infrastructure automation, CI/CD, and site reliability (staff engineer, 15+ YOE)
