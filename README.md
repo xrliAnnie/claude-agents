@@ -26,7 +26,7 @@ cp agents/*.md ~/.claude/agents/
 - **UI/UX**: UI/UX design and frontend architecture assistance
 - **PM-PRD**: Product requirements document writing (staff PM level)
 - **PM-Architecture**: Project architecture and development planning (staff PM level)
-- **security**: Security audit assistance
+- **Security-Engineer**: Enterprise security auditing and vulnerability assessment
 
 ## Usage
 
