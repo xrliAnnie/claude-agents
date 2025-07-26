@@ -22,10 +22,10 @@ cp agents/*.md ~/.claude/agents/
 
 - **code-refactorer**: Code refactoring assistance
 - **content-writer**: Content writing assistance
-- **frontend-designer**: Frontend design assistance
-- **prd-writer**: Product requirement document writing
+- **UI/UX**: UI/UX design and frontend architecture assistance
+- **PM-PRD**: Product requirements document writing (staff PM level)
 - **project-task-planner**: Project planning and task breakdown
-- **security-auditor**: Security audit assistance
+- **security**: Security audit assistance
 - **vibe-coding-coach**: Coding guidance and coaching
 
 ## Usage
