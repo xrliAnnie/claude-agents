@@ -20,15 +20,13 @@ cp agents/*.md ~/.claude/agents/
 
 ## Available Agents
 
-- **Backend-Developer**: Expert backend development (staff engineer, 15+ YOE)
-- **Frontend-Developer**: Expert frontend development (staff engineer, 15+ YOE)
-- **code-refactorer**: Code refactoring assistance
+- **Backend-Developer**: Expert backend development with refactoring capabilities (staff engineer, 15+ YOE)
+- **Frontend-Developer**: Expert frontend development with refactoring capabilities (staff engineer, 15+ YOE)
 - **content-writer**: Content writing assistance
 - **UI/UX**: UI/UX design and frontend architecture assistance
 - **PM-PRD**: Product requirements document writing (staff PM level)
 - **PM-Architecture**: Project architecture and development planning (staff PM level)
 - **security**: Security audit assistance
-- **vibe-coding-coach**: Coding guidance and coaching
 
 ## Usage
 
