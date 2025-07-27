@@ -1,0 +1,292 @@
+#!/bin/bash
+# Add Agent Script - For adding agents to existing projects
+# Used by the Orchestrator agent
+
+set -e
+
+# Color codes
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+# Available agents (same as setup script)
+declare -a AGENT_NAMES=(
+    "PM-Architecture"
+    "PM-PRD"
+    "UI-UX"
+    "Backend-Developer"
+    "Frontend-Developer"
+    "Mobile-Developer"
+    "Data-Engineer"
+    "Data-Scientist"
+    "DevOps-SRE"
+    "QA-Test-Engineer"
+    "Security-Engineer"
+)
+
+declare -a AGENT_DESCRIPTIONS=(
+    "Project planning and task breakdown"
+    "Product requirements documentation"
+    "Design and user experience"
+    "Server-side development"
+    "Web UI development"
+    "iOS/Android development"
+    "Data pipelines and analytics"
+    "ML models and analysis"
+    "Infrastructure and deployment"
+    "Testing and quality assurance"
+    "Security and compliance"
+)
+
+# Agents that need code directories
+declare -a CODE_AGENTS=(
+    "Backend-Developer"
+    "Frontend-Developer"
+    "Mobile-Developer"
+    "Data-Engineer"
+    "DevOps-SRE"
+)
+
+# Default directory names
+declare -A DEFAULT_DIRS=(
+    ["Backend-Developer"]="backend"
+    ["Frontend-Developer"]="frontend"
+    ["Mobile-Developer"]="mobile"
+    ["Data-Engineer"]="data"
+    ["DevOps-SRE"]="infrastructure"
+)
+
+# Function to check if agent needs code directory
+needs_code_dir() {
+    local agent=$1
+    for code_agent in "${CODE_AGENTS[@]}"; do
+        if [[ "$agent" == "$code_agent" ]]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
+# Function to display agents
+display_agents() {
+    echo -e "${BLUE}Available Agents:${NC}"
+    
+    # Check which agents are already added
+    local existing_agents=()
+    if [[ -d ".claude/agents" ]]; then
+        for agent_file in .claude/agents/*.md; do
+            if [[ -f "$agent_file" ]]; then
+                agent_name=$(basename "$agent_file" .md)
+                existing_agents+=("$agent_name")
+            fi
+        done
+    fi
+    
+    for i in "${!AGENT_NAMES[@]}"; do
+        local agent="${AGENT_NAMES[$i]}"
+        local desc="${AGENT_DESCRIPTIONS[$i]}"
+        local status=""
+        
+        # Check if already added
+        for existing in "${existing_agents[@]}"; do
+            if [[ "$agent" == "$existing" ]]; then
+                status=" ${GREEN}[Already added]${NC}"
+                break
+            fi
+        done
+        
+        echo "$((i+1)). $agent - $desc$status"
+    done
+}
+
+# Function to get PRD content
+get_prd_content() {
+    local prd_content=""
+    
+    # Look for PRD files
+    if [[ -f "docs/PRD.md" ]]; then
+        prd_content=$(head -50 docs/PRD.md)
+    elif [[ -f "PRD.md" ]]; then
+        prd_content=$(head -50 PRD.md)
+    else
+        # Search for any file with PRD in name
+        local prd_file=$(find . -name "*PRD*.md" -o -name "*prd*.md" | head -1)
+        if [[ -n "$prd_file" ]]; then
+            prd_content=$(head -50 "$prd_file")
+        fi
+    fi
+    
+    echo "$prd_content"
+}
+
+# Function to create project-specific agent
+create_project_agent() {
+    local agent_name=$1
+    local code_dir=$2
+    
+    # Read root agent
+    local root_agent_file="$HOME/.claude/agents/$agent_name.md"
+    if [[ ! -f "$root_agent_file" ]]; then
+        echo -e "${RED}Error: Root agent $agent_name not found${NC}"
+        return 1
+    fi
+    
+    # Get PRD content
+    local prd_content=$(get_prd_content)
+    
+    # Create directories
+    mkdir -p "coordination/specs/$agent_name"
+    mkdir -p "coordination/implementations/$agent_name"
+    
+    # Create progress file
+    cat > "coordination/progress/$agent_name.md" << EOF
+# $agent_name Progress
+
+## Current Sprint
+- [ ] Not started
+
+## Completed Features
+
+## Blocked
+
+## Notes
+EOF
+    
+    # Create code directory if needed
+    if [[ -n "$code_dir" ]]; then
+        mkdir -p "$code_dir"
+        echo "Created code directory: $code_dir/"
+    fi
+    
+    # Create project-specific agent
+    cat > ".claude/agents/$agent_name.md" << EOF
+$(cat "$root_agent_file")
+
+## Project-Specific Context
+
+This agent is configured for this specific project.
+
+### Project Overview
+$prd_content
+
+### Agent Responsibilities
+$(if [[ -n "$code_dir" ]]; then
+    echo "- Implement features in \`$code_dir/\`"
+fi)
+- Maintain specs in \`coordination/specs/$agent_name/\`
+- Update implementations in \`coordination/implementations/$agent_name/\`
+- Track progress in \`coordination/progress/$agent_name.md\`
+
+### Directory Ownership
+- **Write Access**: 
+$(if [[ -n "$code_dir" ]]; then
+    echo "  - \`$code_dir/\` (all subdirectories)"
+fi)
+  - \`coordination/specs/$agent_name/\`
+  - \`coordination/implementations/$agent_name/\`
+  - \`coordination/progress/$agent_name.md\`
+- **Read Access**: All project files
+
+### Workflow
+1. **Design First**: Create spec in \`coordination/specs/$agent_name/[feature]-v1.0.md\`
+2. **Implement**: Build in your code directory$(if [[ -n "$code_dir" ]]; then echo " (\`$code_dir/\`)"; fi)
+3. **Document**: Update \`coordination/implementations/$agent_name/[feature]-v1.0.md\`
+4. **Track**: Update \`coordination/progress/$agent_name.md\`
+
+### Git Workflow
+\`\`\`bash
+# Only commit files you own
+git add$(if [[ -n "$code_dir" ]]; then echo " $code_dir/"; fi) coordination/specs/$agent_name/ coordination/implementations/$agent_name/ coordination/progress/$agent_name.md
+git commit -m '$(echo $agent_name | tr '[:upper:]' '[:lower:]' | cut -d'-' -f1): [descriptive message]'
+\`\`\`
+
+### Versioning Convention
+- Initial spec: \`feature-v1.0.md\`
+- Minor updates: \`feature-v1.1.md\`
+- Patches: \`feature-v1.1.1.md\`
+- Implementation versions must match spec versions
+EOF
+    
+    echo -e "${GREEN}✓ Added agent: $agent_name${NC}"
+}
+
+# Main function
+main() {
+    echo -e "${BLUE}=== Add Agent to Existing Project ===${NC}"
+    echo ""
+    
+    # Check if this is an existing project
+    if [[ ! -d "coordination" ]]; then
+        echo -e "${RED}Error: No coordination directory found.${NC}"
+        echo "Please run setup-orchestration.sh first to initialize the project."
+        exit 1
+    fi
+    
+    # Display available agents
+    display_agents
+    echo ""
+    
+    # Get agent selection
+    echo -e "${YELLOW}Which agent would you like to add? (Enter number or agent name)${NC}"
+    read -p "> " selection
+    
+    # Parse selection
+    local selected_agent=""
+    if [[ "$selection" =~ ^[0-9]+$ ]] && [ "$selection" -ge 1 ] && [ "$selection" -le "${#AGENT_NAMES[@]}" ]; then
+        selected_agent="${AGENT_NAMES[$((selection-1))]}"
+    else
+        # Check if it's a valid agent name
+        for agent in "${AGENT_NAMES[@]}"; do
+            if [[ "$agent" == "$selection" ]]; then
+                selected_agent="$agent"
+                break
+            fi
+        done
+    fi
+    
+    if [[ -z "$selected_agent" ]]; then
+        echo -e "${RED}Invalid selection${NC}"
+        exit 1
+    fi
+    
+    # Check if already exists
+    if [[ -f ".claude/agents/$selected_agent.md" ]]; then
+        echo -e "${YELLOW}Agent $selected_agent already exists in this project.${NC}"
+        read -p "Do you want to update it? (y/n): " update_choice
+        if [[ "$update_choice" != "y" ]]; then
+            exit 0
+        fi
+    fi
+    
+    # Configure directory if needed
+    local code_dir=""
+    if needs_code_dir "$selected_agent"; then
+        default_dir="${DEFAULT_DIRS[$selected_agent]}"
+        echo ""
+        read -p "$selected_agent directory [default: $default_dir]: " custom_dir
+        if [[ -z "$custom_dir" ]]; then
+            code_dir="$default_dir"
+        else
+            code_dir="$custom_dir"
+        fi
+    fi
+    
+    # Create the agent
+    create_project_agent "$selected_agent" "$code_dir"
+    
+    # Summary
+    echo ""
+    echo -e "${GREEN}=== Agent Added Successfully ===${NC}"
+    echo ""
+    echo "The $selected_agent agent has been configured for this project."
+    echo ""
+    echo "Next steps:"
+    echo "1. Review the agent configuration in .claude/agents/$selected_agent.md"
+    echo "2. Start using the agent with project-specific context"
+    echo "3. The agent should begin by creating specs in coordination/specs/$selected_agent/"
+}
+
+# Run main
+main "$@"
