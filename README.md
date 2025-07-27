@@ -20,6 +20,9 @@ cp agents/*.md ~/.claude/agents/
 
 ## Available Agents
 
+### Orchestration
+- **Orchestrator**: Project setup, multi-agent coordination, and iteration management
+
 ### Development Team
 - **Backend-Developer**: Expert backend development with refactoring capabilities (staff engineer, 15+ YOE)
 - **Frontend-Developer**: Expert frontend development with refactoring capabilities (staff engineer, 15+ YOE)
