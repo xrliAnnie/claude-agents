@@ -36,12 +36,11 @@ Available Agents:
 1. PM-Architecture - Project planning and task breakdown
 2. PM-PRD - Product requirements documentation
 3. UI/UX - Design and user experience
-4. Backend-Developer - Server-side development
-5. Frontend-Developer - Web UI development
-6. Mobile-Developer - iOS/Android development
+4. Backend-Developer - Server-side development (includes DevOps capabilities)
+5. Frontend-Developer - Web UI development (includes deployment capabilities)
+6. Mobile-Developer - iOS/Android development (includes release automation)
 7. Data-Engineer - Data pipelines and analytics
 8. Data-Scientist - ML models and analysis
-8. DevOps-SRE - Infrastructure and deployment
 9. QA-Engineer - Testing and quality assurance
 10. Security-Engineer - Security and compliance
 
@@ -288,7 +287,7 @@ For each agent, include these instructions:
 
 Some agents don't need code directories:
 - **Product-Manager**: Only uses coordination directories
-- **Designer**: Only uses coordination directories
+- **UX-Designer**: Only uses coordination directories
 
 These agents still maintain:
 - `coordination/specs/[Agent-Name]/`

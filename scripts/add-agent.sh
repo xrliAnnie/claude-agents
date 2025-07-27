@@ -14,28 +14,28 @@ NC='\033[0m'
 # Available agents (same as setup script)
 declare -a AGENT_NAMES=(
     "Product-Manager"
-    "Designer"
+    "UX-Designer"
     "Backend-Developer"
     "Frontend-Developer"
     "Mobile-Developer"
     "Data-Engineer"
     "Data-Scientist"
-    "DevOps-SRE"
     "QA-Engineer"
     "Security-Engineer"
+    "Content-Writer"
 )
 
 declare -a AGENT_DESCRIPTIONS=(
     "PRD writing and development planning"
     "UI/UX design and user experience"
-    "Server-side development"
-    "Web UI development"
-    "iOS/Android development"
+    "Server-side development (includes DevOps)"
+    "Web UI development (includes deployment)"
+    "iOS/Android development (includes release automation)"
     "Data pipelines and analytics"
     "ML models and analysis"
-    "Infrastructure and deployment"
     "Testing and quality assurance"
     "Security and compliance"
+    "Content writing and documentation"
 )
 
 # Agents that need code directories
@@ -44,7 +44,6 @@ declare -a CODE_AGENTS=(
     "Frontend-Developer"
     "Mobile-Developer"
     "Data-Engineer"
-    "DevOps-SRE"
 )
 
 # Default directory names
@@ -53,7 +52,6 @@ declare -A DEFAULT_DIRS=(
     ["Frontend-Developer"]="frontend"
     ["Mobile-Developer"]="mobile"
     ["Data-Engineer"]="data"
-    ["DevOps-SRE"]="infrastructure"
 )
 
 # Function to check if agent needs code directory
