@@ -139,6 +139,10 @@ create_project_agent() {
     local agent_name=$1
     local code_dir=$2
     
+    # Get repo name from current directory
+    local repo_name=$(basename "$(pwd)")
+    local project_agent_name="${repo_name}-${agent_name}"
+    
     # Read root agent
     local root_agent_file="$HOME/.claude/agents/$agent_name.md"
     if [[ ! -f "$root_agent_file" ]]; then
@@ -174,12 +178,17 @@ EOF
     fi
     
     # Create project-specific agent
-    cat > ".claude/agents/$agent_name.md" << EOF
-$(cat "$root_agent_file")
+    cat > ".claude/agents/$project_agent_name.md" << EOF
+---
+name: $project_agent_name
+base_agent: $agent_name
+$(grep -v '^name:' "$root_agent_file" | grep -v '^---$' | tail -n +2)
+---
 
 ## Project-Specific Context
 
-This agent is configured for this specific project.
+This agent is configured for the $repo_name project.
+Based on the root $agent_name agent with project-specific knowledge.
 
 ### Project Context
 $seed_content
@@ -210,7 +219,7 @@ fi)
 2. **Implement**: Build in your code directory$(if [[ -n "$code_dir" ]]; then echo " (\`$code_dir/\`)"; fi)
 3. **Document**: Update \`coordination/implementations/$agent_name/v1.0-[feature].md\`
 4. **Track**: Update \`coordination/progress/$agent_name.md\`
-5. **Self-Update**: Update this agent file at important milestones with key decisions
+5. **Self-Update**: Update .claude/agents/$project_agent_name.md at important milestones with key decisions
 
 ### Git Workflow
 \`\`\`bash
@@ -279,9 +288,13 @@ main() {
         exit 1
     fi
     
+    # Get repo name
+    local repo_name=$(basename "$(pwd)")
+    local project_agent_name="${repo_name}-${selected_agent}"
+    
     # Check if already exists
-    if [[ -f ".claude/agents/$selected_agent.md" ]]; then
-        echo -e "${YELLOW}Agent $selected_agent already exists in this project.${NC}"
+    if [[ -f ".claude/agents/$project_agent_name.md" ]]; then
+        echo -e "${YELLOW}Agent $project_agent_name already exists in this project.${NC}"
         read -p "Do you want to update it? (y/n): " update_choice
         if [[ "$update_choice" != "y" ]]; then
             exit 0
@@ -311,7 +324,7 @@ main() {
     echo "The $selected_agent agent has been configured for this project."
     echo ""
     echo "Next steps:"
-    echo "1. Review the agent configuration in .claude/agents/$selected_agent.md"
+    echo "1. Review the agent configuration in .claude/agents/$project_agent_name.md"
     echo "2. Start using the agent with project-specific context"
     echo "3. The agent should begin by creating specs in coordination/specs/$selected_agent/"
 }

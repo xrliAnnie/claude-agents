@@ -128,7 +128,8 @@ for file in ["ARCHITECTURE.md", "DESIGN.md", "README.md"]:
 ### Step 3: Create Project-Specific Agent
 ```markdown
 ---
-name: Backend-Developer
+name: [RepoName]-Backend-Developer
+base_agent: Backend-Developer
 [original metadata]
 ---
 
@@ -136,7 +137,8 @@ name: Backend-Developer
 
 ## Project-Specific Context
 
-This agent is configured for the [Project Name] project.
+This agent is configured for the [RepoName] project.
+Based on the root Backend-Developer agent with project-specific knowledge.
 
 ### Project Overview
 [Extracted from PRD]
@@ -181,7 +183,7 @@ git commit -m 'backend: [descriptive message]'
 
 ### Agent Self-Update Protocol
 
-At important milestones, update your agent file (.claude/agents/[Agent-Name].md) with:
+At important milestones, update your agent file (.claude/agents/[RepoName]-[Agent-Name].md) with:
 
 1. **Architecture Decisions**: Major design choices that affect the project
 2. **Key APIs**: Important endpoints or interfaces you've created
@@ -263,6 +265,7 @@ For each agent, include these instructions:
 - **Specs**: `coordination/specs/[Agent-Name]/`
 - **Implementations**: `coordination/implementations/[Agent-Name]/`
 - **Progress**: `coordination/progress/[Agent-Name].md`
+- **Agent Config**: `.claude/agents/[RepoName]-[Agent-Name].md`
 
 ### Workflow
 1. **Design First**: Create spec in `coordination/specs/[Agent-Name]/v1.0-feature.md`
