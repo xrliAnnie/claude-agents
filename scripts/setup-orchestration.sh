@@ -175,10 +175,28 @@ create_project_agent() {
         return
     fi
     
-    # Extract PRD content if available
-    local prd_content=""
+    # Extract seed content from docs directory
+    local seed_content=""
+    
+    # Read PRD
     if [[ -f "docs/PRD.md" ]]; then
-        prd_content=$(head -50 docs/PRD.md)
+        seed_content="${seed_content}\n### Product Requirements (PRD)\n"
+        seed_content="${seed_content}$(head -50 docs/PRD.md)\n"
+    fi
+    
+    # Read Technical Design Doc
+    if [[ -f "docs/TDD.md" ]]; then
+        seed_content="${seed_content}\n### Technical Design\n"
+        seed_content="${seed_content}$(head -50 docs/TDD.md)\n"
+    elif [[ -f "docs/TECHNICAL_DESIGN.md" ]]; then
+        seed_content="${seed_content}\n### Technical Design\n"
+        seed_content="${seed_content}$(head -50 docs/TECHNICAL_DESIGN.md)\n"
+    fi
+    
+    # Read Architecture if exists
+    if [[ -f "docs/ARCHITECTURE.md" ]]; then
+        seed_content="${seed_content}\n### Architecture Overview\n"
+        seed_content="${seed_content}$(head -30 docs/ARCHITECTURE.md)\n"
     fi
     
     # Create project-specific agent
@@ -189,8 +207,11 @@ $(cat "$root_agent_file")
 
 This agent is configured for this specific project.
 
-### Project Overview
-$prd_content
+### Project Context
+$seed_content
+
+### Project-Specific Knowledge
+*This section will be updated by the agent at important milestones*
 
 ### Agent Responsibilities
 $(if [[ -n "$code_dir" ]]; then
@@ -211,10 +232,11 @@ fi)
 - **Read Access**: All project files
 
 ### Workflow
-1. **Design First**: Create spec in \`coordination/specs/$agent_name/[feature]-v1.0.md\`
+1. **Design First**: Create spec in \`coordination/specs/$agent_name/v1.0-[feature].md\`
 2. **Implement**: Build in your code directory$(if [[ -n "$code_dir" ]]; then echo " (\`$code_dir/\`)"; fi)
-3. **Document**: Update \`coordination/implementations/$agent_name/[feature]-v1.0.md\`
+3. **Document**: Update \`coordination/implementations/$agent_name/v1.0-[feature].md\`
 4. **Track**: Update \`coordination/progress/$agent_name.md\`
+5. **Self-Update**: Update this agent file at important milestones with key decisions
 
 ### Git Workflow
 \`\`\`bash
@@ -224,10 +246,21 @@ git commit -m '$(echo $agent_name | tr '[:upper:]' '[:lower:]' | cut -d'-' -f1):
 \`\`\`
 
 ### Versioning Convention
-- Initial spec: \`feature-v1.0.md\`
-- Minor updates: \`feature-v1.1.md\`
-- Patches: \`feature-v1.1.1.md\`
+- Initial spec: \`v1.0-feature.md\`
+- Minor updates: \`v1.1-feature.md\`
+- Patches: \`v1.1.1-feature.md\`
 - Implementation versions must match spec versions
+- Version prefix ensures files sort chronologically
+
+### When to Self-Update This Agent File
+Update the "Project-Specific Knowledge" section when:
+- Making architectural decisions that affect the whole project
+- Creating important APIs or interfaces
+- Discovering critical business rules or constraints
+- Establishing integration patterns with other agents
+- Learning domain-specific requirements
+
+This helps future sessions remember important context without searching through all files.
 EOF
     
     echo -e "${GREEN}✓ Created project agent: $agent_name${NC}"
@@ -242,13 +275,13 @@ create_coordination_guide() {
 
 ### `/specs/[agent-name]/`
 - Contains versioned specifications for each feature
-- Example: `auth-v1.0.md`, `auth-v1.1.md`
+- Example: `v1.0-auth.md`, `v1.1-auth.md`
 - Agents create specs BEFORE implementation
 
 ### `/implementations/[agent-name]/`
 - Documents HOW features were implemented
 - Version numbers MUST match spec versions
-- Example: `auth-v1.0.md` implementation for `auth-v1.0.md` spec
+- Example: `v1.0-auth.md` implementation for `v1.0-auth.md` spec
 
 ### `/progress/[agent-name].md`
 - Tracks what each agent is working on
@@ -273,12 +306,13 @@ create_coordination_guide() {
 - `v2.0` - Major rewrite or breaking changes
 
 ### Example Flow
-1. Backend creates `coordination/specs/Backend-Developer/auth-v1.0.md`
+1. Backend creates `coordination/specs/Backend-Developer/v1.0-auth.md`
 2. Backend implements auth system
-3. Backend creates `coordination/implementations/Backend-Developer/auth-v1.0.md`
+3. Backend creates `coordination/implementations/Backend-Developer/v1.0-auth.md`
 4. Frontend reads the spec and implements UI
-5. If API needs changes, Backend creates `auth-v1.1.md` spec
+5. If API needs changes, Backend creates `v1.1-auth.md` spec
 6. All agents update to use v1.1
+7. Backend updates their agent file with auth architecture decisions
 
 ## Agent Workflows
 

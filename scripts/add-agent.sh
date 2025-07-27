@@ -101,24 +101,41 @@ display_agents() {
     done
 }
 
-# Function to get PRD content
-get_prd_content() {
-    local prd_content=""
+# Function to get seed content
+get_seed_content() {
+    local seed_content=""
     
-    # Look for PRD files
+    # Read PRD
     if [[ -f "docs/PRD.md" ]]; then
-        prd_content=$(head -50 docs/PRD.md)
-    elif [[ -f "PRD.md" ]]; then
-        prd_content=$(head -50 PRD.md)
-    else
-        # Search for any file with PRD in name
+        seed_content="${seed_content}\n### Product Requirements (PRD)\n"
+        seed_content="${seed_content}$(head -50 docs/PRD.md)\n"
+    fi
+    
+    # Read Technical Design Doc
+    if [[ -f "docs/TDD.md" ]]; then
+        seed_content="${seed_content}\n### Technical Design\n"
+        seed_content="${seed_content}$(head -50 docs/TDD.md)\n"
+    elif [[ -f "docs/TECHNICAL_DESIGN.md" ]]; then
+        seed_content="${seed_content}\n### Technical Design\n"
+        seed_content="${seed_content}$(head -50 docs/TECHNICAL_DESIGN.md)\n"
+    fi
+    
+    # Read Architecture if exists
+    if [[ -f "docs/ARCHITECTURE.md" ]]; then
+        seed_content="${seed_content}\n### Architecture Overview\n"
+        seed_content="${seed_content}$(head -30 docs/ARCHITECTURE.md)\n"
+    fi
+    
+    # If still empty, look for any PRD/design files
+    if [[ -z "$seed_content" ]]; then
         local prd_file=$(find . -name "*PRD*.md" -o -name "*prd*.md" | head -1)
         if [[ -n "$prd_file" ]]; then
-            prd_content=$(head -50 "$prd_file")
+            seed_content="### Project Documentation\n"
+            seed_content="${seed_content}$(head -50 "$prd_file")\n"
         fi
     fi
     
-    echo "$prd_content"
+    echo "$seed_content"
 }
 
 # Function to create project-specific agent
@@ -133,8 +150,8 @@ create_project_agent() {
         return 1
     fi
     
-    # Get PRD content
-    local prd_content=$(get_prd_content)
+    # Get seed content
+    local seed_content=$(get_seed_content)
     
     # Create directories
     mkdir -p "coordination/specs/$agent_name"
@@ -168,8 +185,11 @@ $(cat "$root_agent_file")
 
 This agent is configured for this specific project.
 
-### Project Overview
-$prd_content
+### Project Context
+$seed_content
+
+### Project-Specific Knowledge
+*This section will be updated by the agent at important milestones*
 
 ### Agent Responsibilities
 $(if [[ -n "$code_dir" ]]; then
@@ -190,10 +210,11 @@ fi)
 - **Read Access**: All project files
 
 ### Workflow
-1. **Design First**: Create spec in \`coordination/specs/$agent_name/[feature]-v1.0.md\`
+1. **Design First**: Create spec in \`coordination/specs/$agent_name/v1.0-[feature].md\`
 2. **Implement**: Build in your code directory$(if [[ -n "$code_dir" ]]; then echo " (\`$code_dir/\`)"; fi)
-3. **Document**: Update \`coordination/implementations/$agent_name/[feature]-v1.0.md\`
+3. **Document**: Update \`coordination/implementations/$agent_name/v1.0-[feature].md\`
 4. **Track**: Update \`coordination/progress/$agent_name.md\`
+5. **Self-Update**: Update this agent file at important milestones with key decisions
 
 ### Git Workflow
 \`\`\`bash
@@ -203,10 +224,21 @@ git commit -m '$(echo $agent_name | tr '[:upper:]' '[:lower:]' | cut -d'-' -f1):
 \`\`\`
 
 ### Versioning Convention
-- Initial spec: \`feature-v1.0.md\`
-- Minor updates: \`feature-v1.1.md\`
-- Patches: \`feature-v1.1.1.md\`
+- Initial spec: \`v1.0-feature.md\`
+- Minor updates: \`v1.1-feature.md\`
+- Patches: \`v1.1.1-feature.md\`
 - Implementation versions must match spec versions
+- Version prefix ensures files sort chronologically
+
+### When to Self-Update This Agent File
+Update the "Project-Specific Knowledge" section when:
+- Making architectural decisions that affect the whole project
+- Creating important APIs or interfaces
+- Discovering critical business rules or constraints
+- Establishing integration patterns with other agents
+- Learning domain-specific requirements
+
+This helps future sessions remember important context without searching through all files.
 EOF
     
     echo -e "${GREEN}✓ Added agent: $agent_name${NC}"

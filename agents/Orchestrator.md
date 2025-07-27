@@ -109,9 +109,21 @@ root_agent = read_file(f"~/.claude/agents/{agent_name}.md")
 
 ### Step 2: Extract Project Context
 ```python
-# Find and read PRD
-prd_files = find_files("*.md", ["PRD", "requirements", "product"])
-design_files = find_files("*.md", ["design", "architecture", "technical"])
+# Read seed documents from docs directory
+seed_files = []
+
+# Primary seed files
+if exists("docs/PRD.md"):
+    seed_files.append(read_file("docs/PRD.md"))
+if exists("docs/TDD.md"):  # Technical Design Doc
+    seed_files.append(read_file("docs/TDD.md"))
+if exists("docs/TECHNICAL_DESIGN.md"):
+    seed_files.append(read_file("docs/TECHNICAL_DESIGN.md"))
+
+# Additional context files
+for file in ["ARCHITECTURE.md", "DESIGN.md", "README.md"]:
+    if exists(f"docs/{file}"):
+        seed_files.append(read_file(f"docs/{file}"))
 ```
 
 ### Step 3: Create Project-Specific Agent
@@ -148,10 +160,11 @@ This agent is configured for the [Project Name] project.
 - **Read Access**: All project files
 
 ### Workflow
-1. Start by creating/updating spec in `coordination/specs/Backend-Developer/[feature]-v1.0.md`
+1. Start by creating/updating spec in `coordination/specs/Backend-Developer/v1.0-[feature].md`
 2. Implement the feature in `[backend-dir]/`
-3. Document implementation in `coordination/implementations/Backend-Developer/[feature]-v1.0.md`
+3. Document implementation in `coordination/implementations/Backend-Developer/v1.0-[feature].md`
 4. Update progress in `coordination/progress/Backend-Developer.md`
+5. **Important**: Update your agent file at milestones (see below)
 
 ### Git Workflow
 ```bash
@@ -161,10 +174,46 @@ git commit -m 'backend: [descriptive message]'
 ```
 
 ### Versioning Convention
-- Initial spec: `feature-v1.0.md`
-- Minor updates: `feature-v1.1.md`
-- Patches: `feature-v1.1.1.md`
+- Initial spec: `v1.0-feature.md`
+- Minor updates: `v1.1-feature.md`
+- Patches: `v1.1.1-feature.md`
 - Implementation versions must match spec versions
+- Version prefix ensures automatic file sequencing
+
+### Agent Self-Update Protocol
+
+At important milestones, update your agent file (.claude/agents/[Agent-Name].md) with:
+
+1. **Architecture Decisions**: Major design choices that affect the project
+2. **Key APIs**: Important endpoints or interfaces you've created
+3. **Domain Knowledge**: Business logic specific to this project
+4. **Integration Points**: How your work connects with other agents
+5. **Technical Constraints**: Limitations or requirements discovered
+
+Example update:
+```markdown
+## Project-Specific Knowledge (Updated: 2024-01-15)
+
+### Key Architecture Decisions
+- Using JWT tokens with 24h expiry, refresh tokens in Redis
+- All API responses follow JSend format
+- Database uses soft deletes for audit trail
+
+### Important APIs Created
+- `/api/v1/auth/*` - Authentication endpoints (see v1.1-auth.md)
+- `/api/v1/products/*` - Product catalog (see v1.0-products.md)
+
+### Domain Constraints
+- Prices must support multiple currencies
+- All user actions require audit logging
+- Payment processing through Stripe only
+```
+
+Update your agent file when:
+- Completing a major feature
+- Making architectural decisions
+- Discovering important constraints
+- Creating key integration points
 ```
 
 ## Coordination Structure Details
@@ -172,18 +221,18 @@ git commit -m 'backend: [descriptive message]'
 ### Specs Directory
 ```
 coordination/specs/[agent-name]/
-├── auth-v1.0.md           # Initial spec
-├── auth-v1.1.md           # Minor update
-├── auth-v1.1.1.md         # Patch
-└── payments-v1.0.md       # Different feature
+├── v1.0-auth.md           # Initial spec
+├── v1.1-auth.md           # Minor update
+├── v1.1.1-auth.md         # Patch
+└── v1.0-payments.md       # Different feature
 ```
 
 ### Implementations Directory
 ```
 coordination/implementations/[agent-name]/
-├── auth-v1.0.md           # Matches spec v1.0
-├── auth-v1.1.md           # Matches spec v1.1
-└── payments-v1.0.md       # Matches payments spec
+├── v1.0-auth.md           # Matches spec v1.0
+├── v1.1-auth.md           # Matches spec v1.1
+└── v1.0-payments.md       # Matches payments spec
 ```
 
 ### Progress Tracking
@@ -217,10 +266,11 @@ For each agent, include these instructions:
 - **Progress**: `coordination/progress/[Agent-Name].md`
 
 ### Workflow
-1. **Design First**: Create spec in `coordination/specs/[Agent-Name]/feature-v1.0.md`
+1. **Design First**: Create spec in `coordination/specs/[Agent-Name]/v1.0-feature.md`
 2. **Implement**: Build in your code directory
-3. **Document**: Update `coordination/implementations/[Agent-Name]/feature-v1.0.md`
+3. **Document**: Update `coordination/implementations/[Agent-Name]/v1.0-feature.md`
 4. **Track**: Update `coordination/progress/[Agent-Name].md`
+5. **Self-Update**: Update .claude/agents/[Agent-Name].md at milestones
 
 ### Versioning
 - Start with v1.0 for new features
