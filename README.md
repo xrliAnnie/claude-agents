@@ -35,6 +35,7 @@ cp agents/*.md ~/.claude/agents/
 
 ### Quality & Testing
 - **QA-Engineer**: Test automation, performance testing, and quality assurance (staff engineer, 15+ YOE)
+- **Bar-Raiser**: Principal-level technical review for designs and code (principal engineer, 20+ YOE)
 
 ### Product & Design
 - **Product-Manager**: PRD writing and development planning (staff PM, 15+ YOE)

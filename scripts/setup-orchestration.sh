@@ -22,6 +22,7 @@ declare -a AGENT_NAMES=(
     "Data-Scientist"
     "QA-Engineer"
     "Security-Engineer"
+    "Bar-Raiser"
     "Content-Writer"
 )
 
@@ -35,6 +36,7 @@ declare -a AGENT_DESCRIPTIONS=(
     "ML models and analysis"
     "Testing and quality assurance"
     "Security and compliance"
+    "Principal engineer review (design & code)"
     "Content writing and documentation"
 )
 
