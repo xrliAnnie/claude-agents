@@ -35,12 +35,11 @@ cp agents/*.md ~/.claude/agents/
 - **Security-Engineer**: Enterprise security auditing and vulnerability assessment
 
 ### Quality & Testing
-- **QA-Test-Engineer**: Test automation, performance testing, and quality assurance (staff engineer, 15+ YOE)
+- **QA-Engineer**: Test automation, performance testing, and quality assurance (staff engineer, 15+ YOE)
 
 ### Product & Design
-- **UI/UX**: UI/UX design and frontend architecture assistance
-- **PM-PRD**: Product requirements document writing (staff PM level)
-- **PM-Architecture**: Project architecture and development planning (staff PM level)
+- **Product-Manager**: PRD writing and development planning (staff PM, 15+ YOE)
+- **Designer**: UI/UX design and frontend architecture assistance
 
 ### Content & Documentation
 - **content-writer**: Content writing assistance

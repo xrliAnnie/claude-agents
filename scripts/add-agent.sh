@@ -13,23 +13,21 @@ NC='\033[0m'
 
 # Available agents (same as setup script)
 declare -a AGENT_NAMES=(
-    "PM-Architecture"
-    "PM-PRD"
-    "UI-UX"
+    "Product-Manager"
+    "Designer"
     "Backend-Developer"
     "Frontend-Developer"
     "Mobile-Developer"
     "Data-Engineer"
     "Data-Scientist"
     "DevOps-SRE"
-    "QA-Test-Engineer"
+    "QA-Engineer"
     "Security-Engineer"
 )
 
 declare -a AGENT_DESCRIPTIONS=(
-    "Project planning and task breakdown"
-    "Product requirements documentation"
-    "Design and user experience"
+    "PRD writing and development planning"
+    "UI/UX design and user experience"
     "Server-side development"
     "Web UI development"
     "iOS/Android development"

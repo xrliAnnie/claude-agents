@@ -41,9 +41,9 @@ Available Agents:
 6. Mobile-Developer - iOS/Android development
 7. Data-Engineer - Data pipelines and analytics
 8. Data-Scientist - ML models and analysis
-9. DevOps-SRE - Infrastructure and deployment
-10. QA-Test-Engineer - Testing and quality assurance
-11. Security-Engineer - Security and compliance
+8. DevOps-SRE - Infrastructure and deployment
+9. QA-Engineer - Testing and quality assurance
+10. Security-Engineer - Security and compliance
 
 Which agents would you like to include? (Enter numbers separated by commas)
 Example: 1,3,4,5,10
@@ -287,9 +287,8 @@ For each agent, include these instructions:
 ## Non-Code Agents
 
 Some agents don't need code directories:
-- **PM-Architecture**: Only uses coordination directories
-- **PM-PRD**: Only uses coordination directories  
-- **UI/UX**: Only uses coordination directories
+- **Product-Manager**: Only uses coordination directories
+- **Designer**: Only uses coordination directories
 
 These agents still maintain:
 - `coordination/specs/[Agent-Name]/`

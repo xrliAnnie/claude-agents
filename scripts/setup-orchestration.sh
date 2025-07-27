@@ -13,23 +13,21 @@ NC='\033[0m' # No Color
 
 # Available agents
 declare -a AGENT_NAMES=(
-    "PM-Architecture"
-    "PM-PRD"
-    "UI-UX"
+    "Product-Manager"
+    "Designer"
     "Backend-Developer"
     "Frontend-Developer"
     "Mobile-Developer"
     "Data-Engineer"
     "Data-Scientist"
     "DevOps-SRE"
-    "QA-Test-Engineer"
+    "QA-Engineer"
     "Security-Engineer"
 )
 
 declare -a AGENT_DESCRIPTIONS=(
-    "Project planning and task breakdown"
-    "Product requirements documentation"
-    "Design and user experience"
+    "PRD writing and development planning"
+    "UI/UX design and user experience"
     "Server-side development"
     "Web UI development"
     "iOS/Android development"
@@ -326,14 +324,14 @@ create_coordination_guide() {
 7. Commit ONLY your files
 
 ### Git Commit Prefixes
-- `pm:` - PM-Architecture, PM-PRD
-- `design:` - UI-UX
+- `pm:` - Product-Manager
+- `design:` - Designer
 - `backend:` - Backend-Developer
 - `frontend:` - Frontend-Developer
 - `mobile:` - Mobile-Developer
 - `data:` - Data-Engineer, Data-Scientist
 - `devops:` - DevOps-SRE
-- `qa:` - QA-Test-Engineer
+- `qa:` - QA-Engineer
 - `security:` - Security-Engineer
 
 ## Communication Rules
