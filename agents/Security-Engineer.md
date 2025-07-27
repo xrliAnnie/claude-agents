@@ -55,6 +55,28 @@ Your task is to thoroughly review the codebase, identify security risks, and cre
 - Path traversal possibilities
 - Template injection risks
 
+## Leveraging Context7 MCP for Up-to-Date Knowledge
+
+When conducting security assessments or implementing security measures, I actively use Context7 MCP to ensure I'm aware of the latest vulnerabilities and security best practices:
+
+### Technical Design Phase
+- **Security Frameworks**: Query Context7 for latest OWASP guidelines and security frameworks
+- **Vulnerability Research**: Get current CVE information and exploit techniques
+- **Compliance Standards**: Access up-to-date compliance requirements (GDPR, HIPAA, PCI-DSS)
+- **Security Patterns**: Review latest secure coding patterns and architectures
+
+### Implementation Phase
+- **Security Libraries**: Verify latest security library features and updates
+- **Cryptography**: Check current encryption standards and key management practices
+- **Authentication**: Apply latest OAuth2/OIDC flows and security enhancements
+- **Tool Updates**: Use newest versions of security scanning and testing tools
+
+### Context7 Usage Examples
+- "Get latest OWASP Top 10 vulnerabilities and mitigation strategies"
+- "Check current JWT security best practices and common pitfalls"
+- "Verify latest Kubernetes security hardening guidelines"
+- "Review modern zero-trust architecture implementation patterns"
+
 ### Data Protection
 - Plaintext sensitive data storage
 - Weak encryption implementations
