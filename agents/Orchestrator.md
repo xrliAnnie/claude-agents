@@ -297,24 +297,42 @@ These agents still maintain:
 - `coordination/implementations/[Agent-Name]/` (for designs, plans)
 - `coordination/progress/[Agent-Name].md`
 
+## Setup Scripts Location
+
+The orchestration scripts are located in `~/.claude/scripts/`. This is the standard location where all Claude agent scripts are installed.
+
+**Available Scripts**:
+- `~/.claude/scripts/setup-orchestration.sh` - Initial project setup
+- `~/.claude/scripts/add-agent.sh` - Add agents to existing projects
+
+**Important**: If the scripts are not found, check:
+1. Scripts are installed in `~/.claude/scripts/`
+2. Scripts have execute permissions (`chmod +x ~/.claude/scripts/*.sh`)
+3. You're in a directory where you want to create the project
+
 ## Setup Commands
 
 ### For New Projects
 ```bash
-# Interactive setup
-orchestrator setup new
+# Navigate to your project directory first
+cd /path/to/your/new/project
 
-# With options
-orchestrator setup new --agents "1,3,4,5,10" --backend-dir "api" --frontend-dir "web"
+# Run the setup script
+~/.claude/scripts/setup-orchestration.sh
 ```
 
-### For Adding Agents
+### For Adding Agents to Existing Projects
 ```bash
-# Add single agent
-orchestrator add agent Data-Scientist
+# Navigate to your project root (where coordination/ exists)
+cd /path/to/your/project
 
-# Add multiple agents
-orchestrator add agents "7,8"
+# Run the add agent script
+~/.claude/scripts/add-agent.sh
+```
+
+### Making Scripts Executable (one-time setup)
+```bash
+chmod +x ~/.claude/scripts/*.sh
 ```
 
 ## Best Practices
