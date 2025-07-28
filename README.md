@@ -9,8 +9,7 @@ This repository contains custom agents for Claude Code that work together using 
 
 If you ever need to reinstall or update:
 ```bash
-cd ~/Dev/claude-agents
-./setup-once.sh
+~/.claude/orchestration/scripts/install-global.sh
 ```
 
 ### Using in Projects
