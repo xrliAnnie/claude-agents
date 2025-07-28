@@ -44,9 +44,10 @@ I follow the 5-phase orchestration framework and use a pull model to monitor sta
   - Check for common vulnerabilities
   - Validate security measures implemented
   - Ensure no secrets in code
-  - **Use gh CLI for reviews**: `gh pr review [PR-number] --comment -b "Security feedback"`
-  - **Request changes if needed**: `gh pr review [PR-number] --request-changes -b "Security issues found"`
-  - **Approve when secure**: `gh pr review [PR-number] --approve`
+  - **Use gh CLI for reviews**: 
+    - `gh pr comment [PR-number] -b "Security-Engineer: [Security feedback]"`
+    - **Flag issues**: `gh pr comment [PR-number] -b "Security-Engineer: ⚠️ Security issues found - [details]"`
+    - **Approve**: `gh pr comment [PR-number] -b "Security-Engineer: Security review passed ✅"`
 - **5.5**: Security testing support:
   - Assist QA with security test cases
   - Perform basic penetration testing

@@ -48,9 +48,10 @@ I follow the 5-phase orchestration framework and use a pull model to monitor sta
 - **5.4**: PR Review Process:
   - Create your PR with detailed description
   - Review Frontend/Mobile PRs for API integration
-  - **Use gh CLI for reviews**: `gh pr review [PR-number] --comment -b "Your feedback here"`
-  - **Leave inline comments**: `gh pr review [PR-number] --comment -F review.md`
-  - **Approve when ready**: `gh pr review [PR-number] --approve`
+  - **Use gh CLI for reviews**: 
+    - `gh pr comment [PR-number] -b "Backend-Developer: [Your feedback here]"`
+    - **Request changes**: `gh pr comment [PR-number] -b "Backend-Developer: Requesting changes - [issues]"`
+    - **Approve**: `gh pr comment [PR-number] -b "Backend-Developer: LGTM! ✅ API design looks solid"`
 - **5.6**: Write `coordination/milestone-X/implementations/backend-implementation.md`
 
 ### Cross-Review Duties

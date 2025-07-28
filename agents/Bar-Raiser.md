@@ -44,9 +44,9 @@ I follow the 5-phase orchestration framework and use a pull model to monitor sta
   - Operational considerations
   - Long-term technical debt assessment
   - **Use gh CLI for reviews**: 
-    - `gh pr review [PR-number] --comment -b "Principal feedback"`
-    - **Request changes**: `gh pr review [PR-number] --request-changes -b "Issues that need addressing"`
-    - **Approve excellence**: `gh pr review [PR-number] --approve -b "Meets our high bar"`
+    - `gh pr comment [PR-number] -b "Bar-Raiser: [Principal-level feedback]"`
+    - **Request changes**: `gh pr comment [PR-number] -b "Bar-Raiser: 🔴 Does not meet our bar - [critical issues]"`
+    - **Approve excellence**: `gh pr comment [PR-number] -b "Bar-Raiser: Meets our high bar! 🎆 Excellent work"`
 
 ### Review Focus Areas
 When reviewing, I ensure:

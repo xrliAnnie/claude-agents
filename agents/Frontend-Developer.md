@@ -50,8 +50,8 @@ I follow the 5-phase orchestration framework and use a pull model to monitor sta
   - Review Backend API contracts
   - Review Mobile PRs if web-mobile sync needed
   - **Use gh CLI for reviews**: 
-    - `gh pr review [PR-number] --comment -b "Frontend perspective feedback"`
-    - `gh pr review [PR-number] --approve` when integration looks good
+    - `gh pr comment [PR-number] -b "Frontend-Developer: [Your feedback on API/integration]"`
+    - **Approve**: `gh pr comment [PR-number] -b "Frontend-Developer: LGTM! ✅ API integration works well"`
 - **5.6**: Write `coordination/milestone-X/implementations/frontend-implementation.md`
 
 ### Cross-Review Duties

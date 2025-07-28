@@ -351,18 +351,28 @@ Tracks detailed milestone progress:
    ```
 
 2. **Review Process**
-   ```bash
-   # All engineers review using gh
-   gh pr review [PR-number] --comment
    
-   # Bar-Raiser provides architectural review
-   # Security-Engineer provides security review
+   Since all agents operate under one GitHub account, they identify themselves in comments:
+   
+   ```bash
+   # Each agent prefixes their comments with their name
+   gh pr comment [PR-number] -b "Backend-Developer: The API design looks good..."
+   gh pr comment [PR-number] -b "Security-Engineer: ⚠️ Found SQL injection vulnerability..."
+   gh pr comment [PR-number] -b "Bar-Raiser: 🔴 This won't scale beyond 1000 RPS..."
+   
+   # Approval comments
+   gh pr comment [PR-number] -b "Frontend-Developer: LGTM! ✅"
+   gh pr comment [PR-number] -b "Security-Engineer: Security review passed ✅"
+   gh pr comment [PR-number] -b "Bar-Raiser: Meets our high bar! 🎆"
    ```
 
 3. **Approval Workflow**
    - Address all feedback
-   - Get approval from all reviewers
-   - No merge until consensus
+   - Collect "LGTM" or approval comments from all required reviewers:
+     - Cross-functional reviews (Frontend ↔ Backend ↔ Mobile)
+     - Bar-Raiser approval (always required)
+     - Security-Engineer approval (always required)
+   - Human reviews all agent feedback and merges when consensus reached
 
 ### 5.5 QA & Integration Testing (1-2 days)
 
