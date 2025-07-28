@@ -4,13 +4,14 @@ This repository contains custom agents for Claude Code that work together using 
 
 ## Installation
 
-### One-Time Setup (Do This First!)
+### One-Time Setup
+✅ **Already Complete!** Everything has been installed to `~/.claude/`
+
+If you ever need to reinstall or update:
 ```bash
 cd ~/Dev/claude-agents
 ./setup-once.sh
 ```
-
-This installs everything to `~/.claude/` globally. You only need to do this ONCE.
 
 ### Using in Projects
 After the one-time setup, just tell the Orchestrator to initialize any project:
