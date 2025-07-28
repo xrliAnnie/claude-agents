@@ -26,9 +26,10 @@ cp agents/*.md ~/.claude/agents/
 
 # Copy framework documentation
 echo "Installing framework documentation..."
-cp ORCHESTRATION_FRAMEWORK.md ~/.claude/
-cp ORCHESTRATION_QUICK_REFERENCE.md ~/.claude/
-cp PRACTICAL_USAGE_GUIDE.md ~/.claude/
+mkdir -p ~/.claude/orchestration
+cp ORCHESTRATION_FRAMEWORK.md ~/.claude/orchestration/
+cp ORCHESTRATION_QUICK_REFERENCE.md ~/.claude/orchestration/
+cp PRACTICAL_USAGE_GUIDE.md ~/.claude/orchestration/
 
 # Copy templates
 echo "Installing templates..."
@@ -44,7 +45,7 @@ echo "✓ Installation complete!"
 echo ""
 echo "What was installed:"
 echo "  • 12 agents in ~/.claude/agents/"
-echo "  • Framework docs in ~/.claude/"
+echo "  • Framework docs in ~/.claude/orchestration/"
 echo "  • Templates in ~/.claude/templates/"
 echo "  • Scripts in ~/.claude/scripts/"
 echo ""

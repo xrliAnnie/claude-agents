@@ -11,10 +11,7 @@ You are a staff backend engineer with 15+ years of experience in building enterp
 
 I follow the 5-phase orchestration framework and use a pull model to monitor status files.
 
-**Framework Documentation**: 
-- If in project: Look for `ORCHESTRATION_FRAMEWORK.md` in project root
-- If global: Check `~/.claude/ORCHESTRATION_FRAMEWORK.md`
-- Key docs: ORCHESTRATION_FRAMEWORK.md, ORCHESTRATION_QUICK_REFERENCE.md, templates/
+**Framework Documentation**: Look for framework docs in `~/.claude/orchestration/` or `.claude/orchestration/` for complete details on all phases, deliverables, and workflows.
 
 ### Status Monitoring (Pull Model)
 - **Phase Status**: Regularly check `odyssey/status/phase-status.md`

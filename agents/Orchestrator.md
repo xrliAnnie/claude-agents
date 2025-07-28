@@ -18,7 +18,7 @@ You are a specialized orchestration agent responsible for setting up multi-agent
 When starting work in a new repository, I automatically check and install the framework:
 
 ### Automatic Framework Setup
-1. **Check if framework exists locally**: Look for `.claude/ORCHESTRATION_FRAMEWORK.md`
+1. **Check if framework exists locally**: Look for `.claude/orchestration/ORCHESTRATION_FRAMEWORK.md`
 2. **If not found**: Run `~/.claude/scripts/install-project.sh` to install in current project
 3. **Verify installation**: Confirm all files copied successfully
 4. **Proceed with initialization**: Create odyssey/ structure and phase status
@@ -26,7 +26,7 @@ When starting work in a new repository, I automatically check and install the fr
 ### What Gets Installed
 When I run the install script, it copies:
 - **Agents**: All agent markdown files to `.claude/agents/`
-- **Framework Docs**: ORCHESTRATION_FRAMEWORK.md and guides to `.claude/`
+- **Framework Docs**: ORCHESTRATION_FRAMEWORK.md and guides to `.claude/orchestration/`
 - **Templates**: Status templates to `.claude/templates/`
 
 ### Prerequisite
@@ -67,7 +67,7 @@ When you say "Initialize the orchestration framework" in a new project:
 1. **Auto-Install Framework** (if needed)
 ```bash
 # I automatically run this check
-if [ ! -f ".claude/ORCHESTRATION_FRAMEWORK.md" ]; then
+if [ ! -f ".claude/orchestration/ORCHESTRATION_FRAMEWORK.md" ]; then
     echo "Installing framework in current project..."
     ~/.claude/scripts/install-project.sh
 fi

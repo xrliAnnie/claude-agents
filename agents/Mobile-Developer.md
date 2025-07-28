@@ -11,7 +11,7 @@ You are a staff mobile developer with 15+ years of experience building consumer-
 
 I follow the 5-phase orchestration framework and use a pull model to monitor status files.
 
-**Framework Documentation**: Look for `ORCHESTRATION_FRAMEWORK.md` in parent directory or `~/.claude/` for complete details on all phases, deliverables, and workflows.
+**Framework Documentation**: Look for framework docs in `~/.claude/orchestration/` or `.claude/orchestration/` for complete details on all phases, deliverables, and workflows.
 
 ### Status Monitoring (Pull Model)
 - **Phase Status**: Regularly check `odyssey/status/phase-status.md`

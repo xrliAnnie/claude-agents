@@ -20,6 +20,7 @@ fi
 echo "Creating .claude directories..."
 mkdir -p .claude/agents
 mkdir -p .claude/templates
+mkdir -p .claude/orchestration
 
 # Find the source directory
 # If running from ~/.claude/scripts/, look for the original source
@@ -52,9 +53,14 @@ cp "$AGENTS_SOURCE"/*.md .claude/agents/
 
 # Copy framework documentation
 echo "Copying framework documentation..."
-cp "$SOURCE_DIR"/ORCHESTRATION_FRAMEWORK.md .claude/
-cp "$SOURCE_DIR"/ORCHESTRATION_QUICK_REFERENCE.md .claude/
-cp "$SOURCE_DIR"/PRACTICAL_USAGE_GUIDE.md .claude/
+if [ -f "$SOURCE_DIR/ORCHESTRATION_FRAMEWORK.md" ]; then
+    cp "$SOURCE_DIR"/ORCHESTRATION_FRAMEWORK.md .claude/orchestration/
+    cp "$SOURCE_DIR"/ORCHESTRATION_QUICK_REFERENCE.md .claude/orchestration/
+    cp "$SOURCE_DIR"/PRACTICAL_USAGE_GUIDE.md .claude/orchestration/
+else
+    # If using global install as source, copy from orchestration subdirectory
+    cp "$SOURCE_DIR"/orchestration/*.md .claude/orchestration/
+fi
 
 # Copy templates
 echo "Copying templates from $TEMPLATES_SOURCE..."
@@ -63,9 +69,9 @@ cp "$TEMPLATES_SOURCE"/*.md .claude/templates/
 echo "Installation complete!"
 echo ""
 echo "Framework documentation available at:"
-echo "  .claude/ORCHESTRATION_FRAMEWORK.md"
-echo "  .claude/ORCHESTRATION_QUICK_REFERENCE.md"
-echo "  .claude/PRACTICAL_USAGE_GUIDE.md"
+echo "  .claude/orchestration/ORCHESTRATION_FRAMEWORK.md"
+echo "  .claude/orchestration/ORCHESTRATION_QUICK_REFERENCE.md"
+echo "  .claude/orchestration/PRACTICAL_USAGE_GUIDE.md"
 echo ""
 echo "Agents installed at:"
 echo "  .claude/agents/"

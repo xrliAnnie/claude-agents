@@ -30,9 +30,10 @@ cp "$SOURCE_DIR"/agents/*.md ~/.claude/agents/
 
 # Copy framework documentation
 echo "Copying framework documentation..."
-cp "$SOURCE_DIR"/ORCHESTRATION_FRAMEWORK.md ~/.claude/
-cp "$SOURCE_DIR"/ORCHESTRATION_QUICK_REFERENCE.md ~/.claude/
-cp "$SOURCE_DIR"/PRACTICAL_USAGE_GUIDE.md ~/.claude/
+mkdir -p ~/.claude/orchestration
+cp "$SOURCE_DIR"/ORCHESTRATION_FRAMEWORK.md ~/.claude/orchestration/
+cp "$SOURCE_DIR"/ORCHESTRATION_QUICK_REFERENCE.md ~/.claude/orchestration/
+cp "$SOURCE_DIR"/PRACTICAL_USAGE_GUIDE.md ~/.claude/orchestration/
 
 # Copy templates
 echo "Copying templates..."
@@ -46,9 +47,9 @@ chmod +x ~/.claude/scripts/*.sh
 echo "Installation complete!"
 echo ""
 echo "Framework documentation available at:"
-echo "  ~/.claude/ORCHESTRATION_FRAMEWORK.md"
-echo "  ~/.claude/ORCHESTRATION_QUICK_REFERENCE.md"
-echo "  ~/.claude/PRACTICAL_USAGE_GUIDE.md"
+echo "  ~/.claude/orchestration/ORCHESTRATION_FRAMEWORK.md"
+echo "  ~/.claude/orchestration/ORCHESTRATION_QUICK_REFERENCE.md"
+echo "  ~/.claude/orchestration/PRACTICAL_USAGE_GUIDE.md"
 echo ""
 echo "Agents installed at:"
 echo "  ~/.claude/agents/"
