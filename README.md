@@ -4,34 +4,50 @@ This repository contains custom agents for Claude Code that work together using 
 
 ## Installation
 
-### For Project-Specific Use
-Copy the agents to your project's `.claude/agents/` directory:
+### Option 1: Quick Install (Recommended)
+Run the install script from the claude-agents directory:
 ```bash
-mkdir -p .claude/agents
-cp agents/*.md .claude/agents/
+# For global installation (all projects)
+./scripts/install-global.sh
+
+# For project-specific installation
+./scripts/install-project.sh
 ```
 
-### For Global Use (All Projects)
-Copy the agents, framework docs, and scripts to your user's Claude directory:
+### Option 2: Manual Installation
+
+#### Global Installation (All Projects)
 ```bash
-# Copy agents
-mkdir -p ~/.claude/agents
+# Copy everything to ~/.claude/
+mkdir -p ~/.claude/{agents,templates,scripts}
 cp agents/*.md ~/.claude/agents/
-
-# Copy framework documentation
-cp ORCHESTRATION_FRAMEWORK.md ~/.claude/
-cp ORCHESTRATION_QUICK_REFERENCE.md ~/.claude/
-cp PRACTICAL_USAGE_GUIDE.md ~/.claude/
-
-# Copy templates
-mkdir -p ~/.claude/templates
+cp ORCHESTRATION_FRAMEWORK.md ORCHESTRATION_QUICK_REFERENCE.md PRACTICAL_USAGE_GUIDE.md ~/.claude/
 cp templates/*.md ~/.claude/templates/
-
-# Copy orchestration scripts
-mkdir -p ~/.claude/scripts
 cp scripts/*.sh ~/.claude/scripts/
 chmod +x ~/.claude/scripts/*.sh
 ```
+
+#### Project-Specific Installation
+```bash
+# Copy to current project's .claude/
+mkdir -p .claude/{agents,templates}
+cp agents/*.md .claude/agents/
+cp ORCHESTRATION_FRAMEWORK.md ORCHESTRATION_QUICK_REFERENCE.md PRACTICAL_USAGE_GUIDE.md .claude/
+cp templates/*.md .claude/templates/
+```
+
+### Using the Orchestrator in New Projects
+
+When the Orchestrator starts work in a new repository, it will:
+1. Check if the framework is installed locally or globally
+2. If not installed, run the appropriate install script:
+   - `~/.claude/scripts/install-project.sh` for project-specific setup
+   - `~/.claude/scripts/install-global.sh` for global setup (if not done)
+
+The install scripts are smart enough to find the source files from:
+- `~/Dev/claude-agents` (default location)
+- `~/.claude/` (if globally installed)
+- Relative to script location
 
 ## Orchestration Framework
 
