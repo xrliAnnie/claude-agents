@@ -67,16 +67,166 @@ The orchestration framework is now organized under `~/.claude/orchestration/`:
 - Templates: `~/.claude/orchestration/templates/`
 - Agents stay in: `~/.claude/agents/` (standard location)
 
-## Orchestration Framework
+## How Orchestration Works
 
-The agents work together using a 5-phase development framework:
-1. **Strategic Planning** - Product-Manager creates milestone plan
-2. **Product Design** - UX-Designer creates designs, engineers review
-3. **Technical Architecture** - Engineers create and cross-review architectures
-4. **Milestone Setup** - Orchestrator prepares milestone directories
-5. **Implementation** - Iterative development within each milestone
+### 1. Orchestration Workflow
 
-See `ORCHESTRATION_FRAMEWORK.md` for detailed information.
+```mermaid
+graph TB
+    Start([User: Initialize Framework]) --> Phase1[Phase 1: Strategic Planning]
+    
+    Phase1 --> PM[Product-Manager]
+    PM -->|Reads PRD| MP[Creates Milestone Plan]
+    MP -->|3-5 milestones| MS[Creates Milestone Details]
+    MS --> Gate1{Human Review}
+    
+    Gate1 -->|Approved| Phase2[Phase 2: Product Design]
+    Phase2 --> UX[UX-Designer]
+    UX -->|Based on PRD| DS[Creates Design System]
+    DS --> Mock[Creates Mockups]
+    Mock --> Review1[All Engineers Review]
+    Review1 --> Gate2{Consensus Reached}
+    
+    Gate2 -->|Approved| Phase3[Phase 3: Technical Architecture]
+    Phase3 --> Eng[All Engineers]
+    Eng --> BA[Backend Architecture]
+    Eng --> FA[Frontend Architecture]
+    Eng --> MA[Mobile Architecture]
+    BA & FA & MA --> Cross[Cross-Review]
+    Cross --> BR[Bar-Raiser Review]
+    BR --> Gate3{Architecture Approved}
+    
+    Gate3 -->|Approved| Phase4[Phase 4: Milestone Setup]
+    Phase4 --> Orch[Orchestrator]
+    Orch -->|Creates| Coord[coordination/milestone-X/]
+    Coord --> Status[Initialize Status Files]
+    
+    Status --> Phase5[Phase 5: Implementation]
+    Phase5 --> Loop{For Each Milestone}
+    Loop --> Plan[5.1: Planning]
+    Plan --> Design[5.2: Technical Design]
+    Design --> Impl[5.3: Implementation]
+    Impl --> PR[5.4: PR Review]
+    PR --> Test[5.5: Testing]
+    Test --> Doc[5.6: Documentation]
+    Doc --> Gate4{Milestone Complete?}
+    Gate4 -->|No| Loop
+    Gate4 -->|Yes| Done([Project Complete])
+    
+    style Phase1 fill:#e1f5fe
+    style Phase2 fill:#f3e5f5
+    style Phase3 fill:#e8f5e9
+    style Phase4 fill:#fff3e0
+    style Phase5 fill:#fce4ec
+```
+
+### 2. Status-Driven Pull Model
+
+```mermaid
+graph LR
+    subgraph "Status Files"
+        PS[odyssey/status/phase-status.md]
+        MS[coordination/milestone-X/status.md]
+    end
+    
+    subgraph "Agents Monitor Status"
+        PM2[Product-Manager]
+        UX2[UX-Designer]
+        BE[Backend-Developer]
+        FE[Frontend-Developer]
+        QA[QA-Engineer]
+    end
+    
+    PS -->|Checks Phase| PM2
+    PS -->|Checks Phase| UX2
+    MS -->|Checks Tasks| BE
+    MS -->|Checks Tasks| FE
+    MS -->|Checks Tasks| QA
+    
+    PM2 -->|Updates| PS
+    UX2 -->|Updates| PS
+    BE -->|Updates| MS
+    FE -->|Updates| MS
+    QA -->|Updates| MS
+    
+    style PS fill:#bbdefb
+    style MS fill:#bbdefb
+```
+
+### 3. How to Set Up Orchestrator
+
+```mermaid
+flowchart TD
+    A[Step 1: Install Framework Globally] -->|One time only| B[Already Done ✓]
+    B --> C[Step 2: Go to Your Project]
+    C --> D[Step 3: Create PRD]
+    D --> E[Step 4: Initialize Framework]
+    
+    subgraph "Step 3: Create PRD"
+        D1[Create docs/PRD.md]
+        D1 --> D2[Define Requirements]
+        D2 --> D3[User Stories]
+        D3 --> D4[Success Criteria]
+    end
+    
+    subgraph "Step 4: Initialize Framework"
+        E1[Tell Orchestrator to Initialize]
+        E1 --> E2{Framework Installed?}
+        E2 -->|No| E3[Auto-runs install-project.sh]
+        E2 -->|Yes| E4[Creates odyssey/ structure]
+        E3 --> E4
+        E4 --> E5[Creates phase-status.md]
+        E5 --> E6[Ready for Phase 1]
+    end
+    
+    D --> D1
+    E --> E1
+```
+
+### 4. Code Setup Example
+
+```bash
+# 1. Create a new project
+mkdir my-awesome-project
+cd my-awesome-project
+
+# 2. Create your PRD
+mkdir docs
+cat > docs/PRD.md << 'EOF'
+# Product Requirements Document
+
+## Project Overview
+Building an e-commerce platform...
+
+## User Stories
+- As a user, I want to browse products
+- As a user, I want to add items to cart
+- As a user, I want to checkout securely
+
+## Success Criteria
+- Page load time < 3s
+- 99.9% uptime
+- Mobile responsive
+EOF
+
+# 3. Initialize the framework
+# Tell Claude: "Orchestrator, initialize the orchestration framework"
+# The Orchestrator will:
+# - Check if framework is installed locally
+# - If not, run ~/.claude/orchestration/scripts/install-project.sh
+# - Create odyssey/ directory structure
+# - Set up phase tracking
+
+# 4. Start Phase 1
+# Tell Claude: "Product-Manager, check phase status and begin work"
+# Product-Manager will create milestone plan
+
+# 5. Progress through phases
+# Each agent monitors status files and works when ready
+# Tell Claude: "Show me odyssey/status/phase-status.md" to check progress
+```
+
+See `ORCHESTRATION_FRAMEWORK.md` for detailed phase descriptions and `PRACTICAL_USAGE_GUIDE.md` for step-by-step usage.
 
 ## Available Agents
 
@@ -104,16 +254,9 @@ See `ORCHESTRATION_FRAMEWORK.md` for detailed information.
 ### Content & Documentation
 - **Content-Writer**: Content writing assistance
 
-## Orchestration Framework
+## Key Framework Features
 
 This repository includes a comprehensive orchestration framework for managing complex multi-agent projects:
-
-### Phase-Based Development
-1. **Strategic Planning**: Product-Manager creates milestone breakdown
-2. **Product Design**: UX-Designer creates, all engineers review
-3. **Technical Architecture**: Engineers design systems, cross-review
-4. **Milestone Setup**: Orchestrator creates project structure
-5. **Implementation Loop**: Design → Build → Test → Review → Ship
 
 ### Key Features
 - **Milestone-Based**: Break large projects into 2-4 week milestones
