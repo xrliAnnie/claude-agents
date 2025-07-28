@@ -111,13 +111,26 @@ Tracks detailed milestone progress:
 - Human review of milestone plan
 - Approval before proceeding to Phase 2
 
-## Phase 2: Product Design & Review
+## Phase 2: Product Design & Review (OPTIONAL)
 
 **Owner**: UX-Designer (lead), All Engineers (reviewers)  
 **Duration**: 5-7 days  
-**Output**: Approved design system and mockups
+**Output**: Approved design system and mockups  
+**When to Skip**: For MVPs, technical tools, or when Frontend-Developer can work directly from PRD
 
-### Activities
+### When This Phase is Needed
+- Consumer-facing applications requiring polished UI
+- Complex user workflows needing visualization  
+- When stakeholders need to approve visual design
+- Projects with dedicated design resources
+
+### When to Skip This Phase
+- Internal tools or admin dashboards
+- API-only services
+- MVPs where speed matters more than polish
+- When Frontend-Developer has clear UI direction from PRD
+
+### Activities (When Phase is Active)
 
 1. **Design Creation**
    ```bash
@@ -166,7 +179,13 @@ Tracks detailed milestone progress:
 
 **Owner**: All Engineers (collaborative)  
 **Duration**: 5-7 days  
-**Output**: Approved system architecture
+**Output**: Approved system architecture  
+**Input**: PRD, milestone plan, and designs (if Phase 2 was executed)
+
+### Adjustments When Phase 2 Was Skipped
+- Frontend-Developer creates UI architecture based on PRD requirements
+- Engineers collaborate on UI/UX decisions during architecture review
+- Additional focus on component library selection and UI patterns
 
 ### Activities
 

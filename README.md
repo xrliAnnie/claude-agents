@@ -80,14 +80,17 @@ graph TB
     MP -->|3-5 milestones| MS[Creates Milestone Details]
     MS --> Gate1{Human Review}
     
-    Gate1 -->|Approved| Phase2[Phase 2: Product Design]
+    Gate1 -->|Approved| Decision{Design Phase Needed?}
+    Decision -->|Yes| Phase2[Phase 2: Product Design]
+    Decision -->|No - Skip| Phase3[Phase 3: Technical Architecture]
+    
     Phase2 --> UX[UX-Designer]
     UX -->|Based on PRD| DS[Creates Design System]
     DS --> Mock[Creates Mockups]
     Mock --> Review1[All Engineers Review]
     Review1 --> Gate2{Consensus Reached}
     
-    Gate2 -->|Approved| Phase3[Phase 3: Technical Architecture]
+    Gate2 -->|Approved| Phase3
     Phase3 --> Eng[All Engineers]
     Eng --> BA[Backend Architecture]
     Eng --> FA[Frontend Architecture]
@@ -274,6 +277,7 @@ This repository includes a comprehensive orchestration framework for managing co
 - **Review Gates**: Every phase has quality checkpoints
 - **Cross-Functional Reviews**: Engineers review each other's work
 - **Comprehensive Testing**: Unit tests by developers, E2E tests by QA
+- **Flexible Design Phase**: Optional Phase 2 - skip for MVPs/technical tools, execute for consumer apps
 
 ### Documentation
 - [ORCHESTRATION_FRAMEWORK.md](ORCHESTRATION_FRAMEWORK.md) - Complete framework guide

@@ -21,7 +21,11 @@
 **End Date**: -  
 **Blockers**: None
 
-## Phase 2: Product Design
+## Phase 2: Product Design (OPTIONAL)
+- [ ] **Decision**: Skip design phase (check if skipping)
+- [ ] **Decision**: Execute design phase (check if executing)
+
+### If Executing Design Phase:
 - [ ] UX-Designer assigned
 - [ ] UX-Designer read PRD and milestone plan
 - [ ] Design system created in `odyssey/design/design-system.md`
@@ -38,15 +42,18 @@
 - [ ] Human review completed
 - [ ] Phase approved
 
-**Status**: Waiting for Phase 1  
-**Owner**: UX-Designer  
+**Status**: Evaluate after Phase 1  
+**Owner**: UX-Designer (if executing) / Skip (if not needed)  
+**Decision Criteria**: 
+- Skip for: MVPs, internal tools, technical APIs, admin dashboards
+- Execute for: Consumer apps, complex UX, visual design requirements
 **Start Date**: -  
 **End Date**: -  
 **Blockers**: None
 
 ## Phase 3: Technical Architecture
 - [ ] All engineers assigned
-- [ ] Engineers read PRD, milestone plan, and designs
+- [ ] Engineers read PRD, milestone plan, and designs (if available)
 - [ ] Architecture documents created:
   - [ ] Backend-Developer: `odyssey/architecture/backend-services.md`
   - [ ] Frontend-Developer: `odyssey/architecture/frontend-architecture.md`

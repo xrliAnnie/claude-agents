@@ -21,10 +21,11 @@ I follow the 5-phase orchestration framework and use a pull model to monitor sta
 
 ### My Responsibilities by Phase
 
-#### Phase 2: Product Design
-- **Input**: Read designs in `odyssey/design/`
+#### Phase 2: Product Design (If Present)
+- **Input**: Read designs in `odyssey/design/` (if Phase 2 was executed)
 - **Action**: Review for mobile-specific concerns (gestures, navigation, platform patterns)
 - **Output**: Feedback in `odyssey/reviews/design-review.md`
+- **Note**: If Phase 2 was skipped, mobile UI will follow platform design guidelines
 
 #### Phase 3: Technical Architecture  
 - **Input**: PRD, designs, milestone plan

@@ -102,14 +102,17 @@ Create `odyssey/status/phase-status.md`:
 - **Start Date**: -
 - **End Date**: -
 
-## Phase 2: Product Design
+## Phase 2: Product Design (OPTIONAL)
+- [ ] Determine if design phase needed
+- [ ] Skip this phase (go to Phase 3)
 - [ ] UX-Designer assigned
 - [ ] Designs created
 - [ ] All engineers reviewed
 - [ ] Feedback incorporated
 - [ ] Consensus reached
-- **Status**: Waiting for Phase 1
-- **Owner**: UX-Designer
+- **Status**: Evaluate after Phase 1
+- **Owner**: UX-Designer (if needed)
+- **Decision**: [Human decides based on project type]
 [Continue for all phases...]
 ```
 
