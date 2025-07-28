@@ -451,7 +451,7 @@ Based on the root Backend-Developer agent with project-specific knowledge.
 ### Git Workflow
 ```bash
 # Only commit files you own
-git add [backend-dir]/ coordination/specs/Backend-Developer/ coordination/implementations/Backend-Developer/ coordination/progress/Backend-Developer.md
+git add [backend-dir]/ coordination/v*/specs/Backend-Developer/ coordination/v*/implementations/Backend-Developer/
 git commit -m 'backend: [descriptive message]'
 ```
 
@@ -521,21 +521,28 @@ The system creates project-specific agents based on root agent types:
 
 ## Coordination Structure Details
 
-### Specs Directory
+### Versioned Specs Directory
 ```
-coordination/specs/[agent-name]/
-├── v1.0-auth.md           # Initial spec
-├── v1.1-auth.md           # Minor update
-├── v1.1.1-auth.md         # Patch
-└── v1.0-payments.md       # Different feature
+coordination/v1.0.0/specs/[agent-name]/
+├── feature-auth.md           # Authentication feature
+├── feature-payments.md       # Payments feature
+└── api-design.md            # API specifications
+
+coordination/v1.1.0/specs/[agent-name]/
+├── feature-auth-updates.md   # Auth improvements
+└── performance-optimization.md
 ```
 
-### Implementations Directory
+### Versioned Implementations Directory
 ```
-coordination/implementations/[agent-name]/
-├── v1.0-auth.md           # Matches spec v1.0
-├── v1.1-auth.md           # Matches spec v1.1
-└── v1.0-payments.md       # Matches payments spec
+coordination/v1.0.0/implementations/[agent-name]/
+├── feature-auth-impl.md      # Auth implementation
+├── feature-payments-impl.md  # Payments implementation
+└── api-implementation.md     # API implementation
+
+coordination/v1.1.0/implementations/[agent-name]/
+├── feature-auth-updates-impl.md
+└── performance-optimization-results.md
 ```
 
 ### Progress Tracking
