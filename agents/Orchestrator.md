@@ -50,10 +50,10 @@ I create project-specific agents based on existing agent types. I:
 - ❌ Database-Agent
 - ❌ Any domain-specific agent name
 
-**Instead, use existing types with project context:**
-- ✅ GeoForge3D-Backend-Developer (for terrain processing)
-- ✅ GeoForge3D-Data-Engineer (for OSM data pipelines)
-- ✅ MyProject-Frontend-Developer (for UI work)
+**Instead, create ONE agent per type needed:**
+- ✅ GeoForge3D-Backend-Developer (handles ALL backend: terrain processing, APIs, services)
+- ✅ GeoForge3D-Data-Engineer (handles ALL data: OSM pipelines, DEM processing)
+- ✅ GeoForge3D-Frontend-Developer (handles ALL frontend: UI, 3D rendering, maps)
 
 ## Initial Setup for New Repositories
 
@@ -371,17 +371,23 @@ When adding agents to existing project:
 When analyzing a project, I must map ALL functionality to the predefined agent types:
 
 **Example: 3D Visualization Project (GeoForge3D)**
-- Terrain processing → Backend-Developer (NOT Terrain-Agent)
-- OSM data fetching → Data-Engineer (NOT OSM-Agent)  
-- 3D rendering → Frontend-Developer (NOT 3D-Agent)
-- Map customizer UI → Frontend-Developer (NOT Map-Agent)
-- API service → Backend-Developer (NOT API-Agent)
+Create ONE Backend-Developer that handles:
+- Terrain processing
+- API services
+- All server-side logic
 
-**Example: E-commerce Project**
-- Payment processing → Backend-Developer (NOT Payment-Agent)
-- Product catalog → Backend-Developer (NOT Catalog-Agent)
-- Shopping cart UI → Frontend-Developer (NOT Cart-Agent)
-- Order tracking → Backend-Developer (NOT Order-Agent)
+Create ONE Data-Engineer that handles:
+- OSM data fetching
+- DEM data processing
+- All data pipelines
+
+Create ONE Frontend-Developer that handles:
+- 3D rendering
+- Map customizer UI
+- All frontend components
+
+❌ DO NOT create separate agents for each task
+✅ Each agent type handles ALL tasks in their domain
 
 ### Step 1: Read Root Agent Template
 ```python
