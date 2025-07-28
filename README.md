@@ -94,7 +94,8 @@ graph TB
     Eng --> MA[Mobile Architecture]
     BA & FA & MA --> Cross[Cross-Review]
     Cross --> BR[Bar-Raiser Review]
-    BR --> Gate3{Architecture Approved}
+    Cross --> SE[Security-Engineer Review]
+    BR & SE --> Gate3{Architecture Approved}
     
     Gate3 -->|Approved| Phase4[Phase 4: Milestone Setup]
     Phase4 --> Orch[Orchestrator]
@@ -134,20 +135,29 @@ graph LR
         UX2[UX-Designer]
         BE[Backend-Developer]
         FE[Frontend-Developer]
+        MD[Mobile-Developer]
         QA[QA-Engineer]
+        BR2[Bar-Raiser]
+        SE2[Security-Engineer]
     end
     
     PS -->|Checks Phase| PM2
     PS -->|Checks Phase| UX2
     MS -->|Checks Tasks| BE
     MS -->|Checks Tasks| FE
+    MS -->|Checks Tasks| MD
     MS -->|Checks Tasks| QA
+    MS -->|Checks Reviews| BR2
+    MS -->|Checks Security| SE2
     
     PM2 -->|Updates| PS
     UX2 -->|Updates| PS
     BE -->|Updates| MS
     FE -->|Updates| MS
+    MD -->|Updates| MS
     QA -->|Updates| MS
+    BR2 -->|Updates| MS
+    SE2 -->|Updates| MS
     
     style PS fill:#bbdefb
     style MS fill:#bbdefb

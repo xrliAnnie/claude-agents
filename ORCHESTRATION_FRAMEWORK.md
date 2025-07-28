@@ -269,13 +269,43 @@ Tracks detailed milestone progress:
    - Security-Engineer reviews all designs for vulnerabilities
    ```
 
-2. **Feedback Integration**
+2. **Document Review Feedback Location**
+   
+   For design document reviews, feedback should be collected in structured markdown files:
+   
    ```
    coordination/milestone-X/reviews/design-reviews/
-   ├── backend-design-feedback.md
-   ├── frontend-design-feedback.md
-   ├── mobile-design-feedback.md
-   └── security-review.md
+   ├── backend-design-feedback.md     # All feedback on backend design
+   ├── frontend-design-feedback.md    # All feedback on frontend design
+   ├── mobile-design-feedback.md      # All feedback on mobile design
+   └── security-review.md            # Security-specific feedback
+   ```
+   
+   **Feedback Format**:
+   ```markdown
+   # Backend Design v1.0 Feedback
+   
+   ## Frontend-Developer Review
+   - **API Consistency**: The endpoint naming...
+   - **Response Format**: Consider using...
+   - **Error Handling**: Need consistent error codes...
+   
+   ## Security-Engineer Review
+   - **Authentication**: JWT expiry should be...
+   - **Rate Limiting**: Add rate limits to...
+   
+   ## Bar-Raiser Review
+   - **Scalability**: This design won't scale beyond...
+   - **Alternative**: Consider event-driven approach...
+   ```
+   
+   **For Architecture Reviews (Phase 3)**:
+   ```
+   odyssey/reviews/
+   ├── design-review.md              # Phase 2 design feedback
+   ├── architecture-review.md        # General architecture feedback
+   ├── security-architecture-review.md  # Security-specific feedback
+   └── bar-raiser-architecture-review.md # Principal-level feedback
    ```
 
 3. **Design Revision**

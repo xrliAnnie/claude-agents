@@ -45,7 +45,13 @@ I follow the 5-phase orchestration framework and use a pull model to monitor sta
   - API integration
   - Platform-specific code
 - **5.3**: Implement apps with unit tests (80%+ coverage)
-- **5.4**: Create PR, review Backend API contracts
+- **5.4**: PR Review Process:
+  - Create your PR with app screenshots/recordings
+  - Review Backend API contracts for mobile usage
+  - Review Frontend PRs if web-mobile sync needed
+  - **Use gh CLI for reviews**: 
+    - `gh pr review [PR-number] --comment -b "Mobile perspective feedback"`
+    - `gh pr review [PR-number] --approve` when API works well for mobile
 - **5.6**: Write `coordination/milestone-X/implementations/mobile-implementation.md`
 
 ### Cross-Review Duties

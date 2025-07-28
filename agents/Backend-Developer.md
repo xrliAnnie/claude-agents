@@ -45,7 +45,12 @@ I follow the 5-phase orchestration framework and use a pull model to monitor sta
   - Service implementations
   - Error handling strategies
 - **5.3**: Implement code with comprehensive unit tests (80%+ coverage)
-- **5.4**: Create PR, review Frontend/Mobile PRs for API integration
+- **5.4**: PR Review Process:
+  - Create your PR with detailed description
+  - Review Frontend/Mobile PRs for API integration
+  - **Use gh CLI for reviews**: `gh pr review [PR-number] --comment -b "Your feedback here"`
+  - **Leave inline comments**: `gh pr review [PR-number] --comment -F review.md`
+  - **Approve when ready**: `gh pr review [PR-number] --approve`
 - **5.6**: Write `coordination/milestone-X/implementations/backend-implementation.md`
 
 ### Cross-Review Duties

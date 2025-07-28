@@ -44,6 +44,10 @@ I follow the 5-phase orchestration framework and use a pull model to monitor sta
   - Perform integration testing
   - Execute manual testing
   - Document results in `coordination/milestone-X/tests/`
+  - **For critical issues during testing**:
+    - Create bug report: `gh issue create --title "Bug: [description]" --body "Details..."`
+    - Link to merged PR: `gh issue comment [issue-number] -b "Related to PR #[number]"`
+    - Tag relevant engineers for fixes
 - **5.6**: Create quality report with metrics
 
 ### Testing Focus Areas
