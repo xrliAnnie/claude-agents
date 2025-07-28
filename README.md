@@ -4,15 +4,30 @@ This repository contains custom agents for Claude Code that work together using 
 
 ## Installation
 
-### Option 1: Quick Install (Recommended)
-Run the install script from the claude-agents directory:
+### One-Time Setup (Do This First!)
 ```bash
-# For global installation (all projects)
-./scripts/install-global.sh
-
-# For project-specific installation
-./scripts/install-project.sh
+cd ~/Dev/claude-agents
+./setup-once.sh
 ```
+
+This installs everything to `~/.claude/` globally. You only need to do this ONCE.
+
+### Using in Projects
+After the one-time setup, just tell the Orchestrator to initialize any project:
+
+```bash
+# In any project directory
+"Orchestrator, initialize the orchestration framework"
+```
+
+The Orchestrator will:
+1. Check if framework is installed in the project
+2. If not, automatically run `~/.claude/scripts/install-project.sh`
+3. Set up the odyssey/ directory structure
+4. Create phase status tracking
+5. Guide you through the 5-phase process
+
+**No manual installation needed after the initial setup!**
 
 ### Option 2: Manual Installation
 

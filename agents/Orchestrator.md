@@ -15,34 +15,28 @@ You are a specialized orchestration agent responsible for setting up multi-agent
 
 ## Initial Setup for New Repositories
 
-When starting work in a new repository, first check if the orchestration framework is installed:
+When starting work in a new repository, I automatically check and install the framework:
 
-### Check Installation
+### Automatic Framework Setup
+1. **Check if framework exists locally**: Look for `.claude/ORCHESTRATION_FRAMEWORK.md`
+2. **If not found**: Run `~/.claude/scripts/install-project.sh` to install in current project
+3. **Verify installation**: Confirm all files copied successfully
+4. **Proceed with initialization**: Create odyssey/ structure and phase status
+
+### What Gets Installed
+When I run the install script, it copies:
+- **Agents**: All agent markdown files to `.claude/agents/`
+- **Framework Docs**: ORCHESTRATION_FRAMEWORK.md and guides to `.claude/`
+- **Templates**: Status templates to `.claude/templates/`
+
+### Prerequisite
+This assumes the global installation was done once:
 ```bash
-# Check if framework docs exist
-if [ -f ".claude/ORCHESTRATION_FRAMEWORK.md" ]; then
-    echo "Framework already installed locally"
-elif [ -f "~/.claude/ORCHESTRATION_FRAMEWORK.md" ]; then
-    echo "Framework installed globally"
-else
-    echo "Framework not installed - need to install"
-fi
+# One-time setup (should already be done)
+cp -r ~/Dev/claude-agents/* ~/.claude/
 ```
 
-### Install Framework (if needed)
-If framework is not installed, use one of these scripts from `~/.claude/scripts/`:
-
-1. **For Project-Specific Installation**:
-   ```bash
-   ~/.claude/scripts/install-project.sh
-   ```
-   This installs everything into `.claude/` in the current project.
-
-2. **For Global Installation** (if not already done):
-   ```bash
-   ~/.claude/scripts/install-global.sh
-   ```
-   This installs everything into `~/.claude/` for all projects.
+If `~/.claude/scripts/` doesn't exist, I'll notify you to do the initial setup first.
 
 ## Core Responsibilities
 
@@ -68,9 +62,18 @@ If framework is not installed, use one of these scripts from `~/.claude/scripts/
 
 ### Mode 1: Framework Initialization
 
-When starting a new project with the orchestration framework:
+When you say "Initialize the orchestration framework" in a new project:
 
-1. **Create Framework Structure**
+1. **Auto-Install Framework** (if needed)
+```bash
+# I automatically run this check
+if [ ! -f ".claude/ORCHESTRATION_FRAMEWORK.md" ]; then
+    echo "Installing framework in current project..."
+    ~/.claude/scripts/install-project.sh
+fi
+```
+
+2. **Create Framework Structure**
 ```
 project-root/
 ├── docs/                    # For initial PRD
