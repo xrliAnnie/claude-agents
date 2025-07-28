@@ -18,7 +18,8 @@ fi
 
 # Create all directories
 echo "Creating directories..."
-mkdir -p ~/.claude/{agents,templates,scripts}
+mkdir -p ~/.claude/{agents,templates}
+mkdir -p ~/.claude/orchestration/scripts
 
 # Copy agents
 echo "Installing agents..."
@@ -37,8 +38,8 @@ cp templates/*.md ~/.claude/templates/
 
 # Copy scripts
 echo "Installing scripts..."
-cp scripts/*.sh ~/.claude/scripts/
-chmod +x ~/.claude/scripts/*.sh
+cp scripts/*.sh ~/.claude/orchestration/scripts/
+chmod +x ~/.claude/orchestration/scripts/*.sh
 
 echo ""
 echo "✓ Installation complete!"
@@ -47,7 +48,7 @@ echo "What was installed:"
 echo "  • 12 agents in ~/.claude/agents/"
 echo "  • Framework docs in ~/.claude/orchestration/"
 echo "  • Templates in ~/.claude/templates/"
-echo "  • Scripts in ~/.claude/scripts/"
+echo "  • Scripts in ~/.claude/orchestration/scripts/"
 echo ""
 echo "Next steps:"
 echo "1. Go to any project directory"

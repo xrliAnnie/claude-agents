@@ -22,7 +22,7 @@ echo "Using source directory: $SOURCE_DIR"
 echo "Creating directories..."
 mkdir -p ~/.claude/agents
 mkdir -p ~/.claude/templates
-mkdir -p ~/.claude/scripts
+mkdir -p ~/.claude/orchestration/scripts
 
 # Copy agents
 echo "Copying agents..."
@@ -41,8 +41,8 @@ cp "$SOURCE_DIR"/templates/*.md ~/.claude/templates/
 
 # Copy scripts
 echo "Copying scripts..."
-cp "$SOURCE_DIR"/scripts/*.sh ~/.claude/scripts/
-chmod +x ~/.claude/scripts/*.sh
+cp "$SOURCE_DIR"/scripts/*.sh ~/.claude/orchestration/scripts/
+chmod +x ~/.claude/orchestration/scripts/*.sh
 
 echo "Installation complete!"
 echo ""

@@ -19,7 +19,7 @@ When starting work in a new repository, I automatically check and install the fr
 
 ### Automatic Framework Setup
 1. **Check if framework exists locally**: Look for `.claude/orchestration/ORCHESTRATION_FRAMEWORK.md`
-2. **If not found**: Run `~/.claude/scripts/install-project.sh` to install in current project
+2. **If not found**: Run `~/.claude/orchestration/scripts/install-project.sh` to install in current project
 3. **Verify installation**: Confirm all files copied successfully
 4. **Proceed with initialization**: Create odyssey/ structure and phase status
 
@@ -36,7 +36,7 @@ This assumes the global installation was done once:
 cp -r ~/Dev/claude-agents/* ~/.claude/
 ```
 
-If `~/.claude/scripts/` doesn't exist, I'll notify you to do the initial setup first.
+If `~/.claude/orchestration/scripts/` doesn't exist, I'll notify you to do the initial setup first.
 
 ## Core Responsibilities
 
@@ -69,7 +69,7 @@ When you say "Initialize the orchestration framework" in a new project:
 # I automatically run this check
 if [ ! -f ".claude/orchestration/ORCHESTRATION_FRAMEWORK.md" ]; then
     echo "Installing framework in current project..."
-    ~/.claude/scripts/install-project.sh
+    ~/.claude/orchestration/scripts/install-project.sh
 fi
 ```
 
@@ -519,8 +519,8 @@ These agents still maintain:
 The orchestration scripts are located in `~/.claude/scripts/`. This is the standard location where all Claude agent scripts are installed.
 
 **Available Scripts**:
-- `~/.claude/scripts/setup-orchestration.sh` - Initial project setup
-- `~/.claude/scripts/add-agent.sh` - Add agents to existing projects
+- `~/.claude/orchestration/scripts/setup-orchestration.sh` - Initial project setup
+- `~/.claude/orchestration/scripts/add-agent.sh` - Add agents to existing projects
 
 **Important**: If the scripts are not found, check:
 1. Scripts are installed in `~/.claude/scripts/`

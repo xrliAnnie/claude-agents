@@ -23,7 +23,7 @@ After the one-time setup, just tell the Orchestrator to initialize any project:
 
 The Orchestrator will:
 1. Check if framework is installed in the project
-2. If not, automatically run `~/.claude/scripts/install-project.sh`
+2. If not, automatically run `~/.claude/orchestration/scripts/install-project.sh`
 3. Set up the odyssey/ directory structure
 4. Create phase status tracking
 5. Guide you through the 5-phase process
@@ -39,8 +39,8 @@ mkdir -p ~/.claude/{agents,templates,scripts}
 cp agents/*.md ~/.claude/agents/
 cp ORCHESTRATION_FRAMEWORK.md ORCHESTRATION_QUICK_REFERENCE.md PRACTICAL_USAGE_GUIDE.md ~/.claude/
 cp templates/*.md ~/.claude/templates/
-cp scripts/*.sh ~/.claude/scripts/
-chmod +x ~/.claude/scripts/*.sh
+cp scripts/*.sh ~/.claude/orchestration/scripts/
+chmod +x ~/.claude/orchestration/scripts/*.sh
 ```
 
 #### Project-Specific Installation
@@ -60,10 +60,11 @@ When the Orchestrator starts work in a new repository, it will:
    - `~/.claude/scripts/install-project.sh` for project-specific setup
    - `~/.claude/scripts/install-global.sh` for global setup (if not done)
 
-The install scripts are smart enough to find the source files from:
-- `~/Dev/claude-agents` (default location)
-- `~/.claude/` (if globally installed)
-- Relative to script location
+The orchestration framework is now organized under `~/.claude/orchestration/`:
+- Framework docs: `~/.claude/orchestration/*.md`
+- Scripts: `~/.claude/orchestration/scripts/`
+- Templates stay in: `~/.claude/templates/`
+- Agents stay in: `~/.claude/agents/`
 
 ## Orchestration Framework
 
