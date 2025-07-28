@@ -12,11 +12,20 @@ cp agents/*.md .claude/agents/
 ```
 
 ### For Global Use (All Projects)
-Copy the agents and scripts to your user's Claude directory:
+Copy the agents, framework docs, and scripts to your user's Claude directory:
 ```bash
 # Copy agents
 mkdir -p ~/.claude/agents
 cp agents/*.md ~/.claude/agents/
+
+# Copy framework documentation
+cp ORCHESTRATION_FRAMEWORK.md ~/.claude/
+cp ORCHESTRATION_QUICK_REFERENCE.md ~/.claude/
+cp PRACTICAL_USAGE_GUIDE.md ~/.claude/
+
+# Copy templates
+mkdir -p ~/.claude/templates
+cp templates/*.md ~/.claude/templates/
 
 # Copy orchestration scripts
 mkdir -p ~/.claude/scripts
