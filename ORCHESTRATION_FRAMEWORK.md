@@ -14,6 +14,8 @@ This framework defines a comprehensive orchestration system for complex software
 
 ## Directory Structure
 
+**Note**: For the new versioned coordination structure with agent subdirectories, see `/templates/coordination-structure-example.md`
+
 ```
 project-root/
 ├── docs/                    # Initial PRD and project documents
