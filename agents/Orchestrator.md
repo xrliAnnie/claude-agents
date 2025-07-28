@@ -51,9 +51,9 @@ I create project-specific agents based on existing agent types. I:
 - ❌ Any domain-specific agent name
 
 **Instead, create ONE agent per type needed:**
-- ✅ GeoForge3D-Backend-Developer (handles ALL backend: terrain processing, APIs, services)
-- ✅ GeoForge3D-Data-Engineer (handles ALL data: OSM pipelines, DEM processing)
-- ✅ GeoForge3D-Frontend-Developer (handles ALL frontend: UI, 3D rendering, maps)
+- ✅ [ProjectName]-Backend-Developer (handles ALL backend work)
+- ✅ [ProjectName]-Frontend-Developer (handles ALL frontend work)
+- ✅ [ProjectName]-Data-Engineer (handles ALL data work)
 
 ## Initial Setup for New Repositories
 
@@ -370,24 +370,15 @@ When adding agents to existing project:
 
 When analyzing a project, I must map ALL functionality to the predefined agent types:
 
-**Example: 3D Visualization Project (GeoForge3D)**
-Create ONE Backend-Developer that handles:
-- Terrain processing
-- API services
-- All server-side logic
+**Key Principle: ONE agent per type handles ALL tasks in that domain**
 
-Create ONE Data-Engineer that handles:
-- OSM data fetching
-- DEM data processing
-- All data pipelines
+For example:
+- **Backend-Developer**: Handles ALL backend tasks (APIs, services, processing, databases)
+- **Frontend-Developer**: Handles ALL frontend tasks (UI, components, styling, interactions)
+- **Data-Engineer**: Handles ALL data tasks (pipelines, ETL, processing, analytics)
 
-Create ONE Frontend-Developer that handles:
-- 3D rendering
-- Map customizer UI
-- All frontend components
-
-❌ DO NOT create separate agents for each task
-✅ Each agent type handles ALL tasks in their domain
+❌ DO NOT create multiple agents of the same type for different features
+✅ Each agent type is responsible for their entire domain
 
 ### Step 1: Read Root Agent Template
 ```python
