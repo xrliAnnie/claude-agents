@@ -21,7 +21,7 @@ echo "Using source directory: $SOURCE_DIR"
 # Create directories
 echo "Creating directories..."
 mkdir -p ~/.claude/agents
-mkdir -p ~/.claude/templates
+mkdir -p ~/.claude/orchestration/templates
 mkdir -p ~/.claude/orchestration/scripts
 
 # Copy agents
@@ -37,7 +37,7 @@ cp "$SOURCE_DIR"/PRACTICAL_USAGE_GUIDE.md ~/.claude/orchestration/
 
 # Copy templates
 echo "Copying templates..."
-cp "$SOURCE_DIR"/templates/*.md ~/.claude/templates/
+cp "$SOURCE_DIR"/templates/*.md ~/.claude/orchestration/templates/
 
 # Copy scripts
 echo "Copying scripts..."
@@ -55,4 +55,4 @@ echo "Agents installed at:"
 echo "  ~/.claude/agents/"
 echo ""
 echo "Templates available at:"
-echo "  ~/.claude/templates/"
+echo "  ~/.claude/orchestration/templates/"

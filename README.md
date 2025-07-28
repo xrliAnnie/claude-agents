@@ -35,10 +35,11 @@ The Orchestrator will:
 #### Global Installation (All Projects)
 ```bash
 # Copy everything to ~/.claude/
-mkdir -p ~/.claude/{agents,templates,scripts}
+mkdir -p ~/.claude/agents
+mkdir -p ~/.claude/orchestration/{scripts,templates}
 cp agents/*.md ~/.claude/agents/
-cp ORCHESTRATION_FRAMEWORK.md ORCHESTRATION_QUICK_REFERENCE.md PRACTICAL_USAGE_GUIDE.md ~/.claude/
-cp templates/*.md ~/.claude/templates/
+cp ORCHESTRATION_FRAMEWORK.md ORCHESTRATION_QUICK_REFERENCE.md PRACTICAL_USAGE_GUIDE.md ~/.claude/orchestration/
+cp templates/*.md ~/.claude/orchestration/templates/
 cp scripts/*.sh ~/.claude/orchestration/scripts/
 chmod +x ~/.claude/orchestration/scripts/*.sh
 ```
@@ -46,10 +47,11 @@ chmod +x ~/.claude/orchestration/scripts/*.sh
 #### Project-Specific Installation
 ```bash
 # Copy to current project's .claude/
-mkdir -p .claude/{agents,templates}
+mkdir -p .claude/agents
+mkdir -p .claude/orchestration/{scripts,templates}
 cp agents/*.md .claude/agents/
-cp ORCHESTRATION_FRAMEWORK.md ORCHESTRATION_QUICK_REFERENCE.md PRACTICAL_USAGE_GUIDE.md .claude/
-cp templates/*.md .claude/templates/
+cp ORCHESTRATION_FRAMEWORK.md ORCHESTRATION_QUICK_REFERENCE.md PRACTICAL_USAGE_GUIDE.md .claude/orchestration/
+cp templates/*.md .claude/orchestration/templates/
 ```
 
 ### Using the Orchestrator in New Projects
@@ -63,8 +65,8 @@ When the Orchestrator starts work in a new repository, it will:
 The orchestration framework is now organized under `~/.claude/orchestration/`:
 - Framework docs: `~/.claude/orchestration/*.md`
 - Scripts: `~/.claude/orchestration/scripts/`
-- Templates stay in: `~/.claude/templates/`
-- Agents stay in: `~/.claude/agents/`
+- Templates: `~/.claude/orchestration/templates/`
+- Agents stay in: `~/.claude/agents/` (standard location)
 
 ## Orchestration Framework
 

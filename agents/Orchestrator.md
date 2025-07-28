@@ -27,7 +27,7 @@ When starting work in a new repository, I automatically check and install the fr
 When I run the install script, it copies:
 - **Agents**: All agent markdown files to `.claude/agents/`
 - **Framework Docs**: ORCHESTRATION_FRAMEWORK.md and guides to `.claude/orchestration/`
-- **Templates**: Status templates to `.claude/templates/`
+- **Templates**: Status templates to `.claude/orchestration/templates/`
 
 ### Prerequisite
 This assumes the global installation was done once:
