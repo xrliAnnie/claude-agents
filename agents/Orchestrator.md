@@ -521,6 +521,8 @@ The system creates project-specific agents based on root agent types:
 
 ## Coordination Structure Details
 
+**For a complete example of the new coordination structure, see `/templates/coordination-structure-example.md`**
+
 ### Versioned Specs Directory
 ```
 coordination/v1.0.0/specs/[agent-name]/
@@ -675,6 +677,7 @@ For detailed orchestration workflows, see:
 - `/ORCHESTRATION_FRAMEWORK.md` - Complete framework guide
 - `/ORCHESTRATION_QUICK_REFERENCE.md` - Quick command reference
 - `/examples/orchestration-framework-example.md` - Full example
+- `/templates/coordination-structure-example.md` - New versioned coordination structure
 
 ## Agent Mapping Examples
 

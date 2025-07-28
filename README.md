@@ -283,6 +283,7 @@ This repository includes a comprehensive orchestration framework for managing co
 - [ORCHESTRATION_FRAMEWORK.md](ORCHESTRATION_FRAMEWORK.md) - Complete framework guide
 - [ORCHESTRATION_QUICK_REFERENCE.md](ORCHESTRATION_QUICK_REFERENCE.md) - Quick command reference
 - [PRACTICAL_USAGE_GUIDE.md](PRACTICAL_USAGE_GUIDE.md) - Step-by-step usage instructions
+- [templates/coordination-structure-example.md](templates/coordination-structure-example.md) - Example of the new versioned coordination structure
 
 ## Usage
 
