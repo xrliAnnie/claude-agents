@@ -1,0 +1,360 @@
+<!--
+VIEWING INSTRUCTIONS:
+1. Save this file as 'dashboard-mockup.html' 
+2. Open in your web browser (Chrome, Firefox, Safari, etc.)
+3. Resize browser window to see responsive behavior
+4. Hover over cards to see interactive effects
+
+ALTERNATIVELY:
+- Copy the code into CodePen.io or JSFiddle for online viewing
+- This is a self-contained file with all styles included
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Mockup - UX Designer Example</title>
+    <style>
+        /* Design System Variables */
+        :root {
+            /* Colors */
+            --primary: #007AFF;
+            --primary-hover: #0051D5;
+            --secondary: #5856D6;
+            --success: #34C759;
+            --warning: #FF9500;
+            --danger: #FF3B30;
+            
+            /* Neutrals */
+            --background: #F2F2F7;
+            --surface: #FFFFFF;
+            --text-primary: #1C1C1E;
+            --text-secondary: #8E8E93;
+            --border: #E5E5EA;
+            
+            /* Spacing */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            
+            /* Typography */
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.5rem;
+            --font-size-2xl: 2rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            
+            /* Border Radius */
+            --radius-sm: 0.25rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 1rem;
+        }
+        
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            line-height: 1.5;
+            color: var(--text-primary);
+            background-color: var(--background);
+        }
+        
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-md);
+        }
+        
+        /* Header */
+        .header {
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: var(--spacing-lg) 0;
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: var(--font-size-xl);
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .nav {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+        
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        /* Cards */
+        .card {
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .card-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+        }
+        
+        .card-value {
+            font-size: var(--font-size-2xl);
+            font-weight: bold;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .card-subtitle {
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+        }
+        
+        /* Status Indicators */
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .status-success { color: var(--success); }
+        .status-success .status-dot { background-color: var(--success); }
+        
+        .status-warning { color: var(--warning); }
+        .status-warning .status-dot { background-color: var(--warning); }
+        
+        .status-danger { color: var(--danger); }
+        .status-danger .status-dot { background-color: var(--danger); }
+        
+        /* Buttons */
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        
+        .button-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .button-primary:hover {
+            background-color: var(--primary-hover);
+        }
+        
+        /* Table */
+        .table-container {
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+            overflow-x: auto;
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .table th,
+        .table td {
+            padding: var(--spacing-md);
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .table th {
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Dashboard</div>
+                <nav class="nav">
+                    <a href="#" class="nav-link">Overview</a>
+                    <a href="#" class="nav-link">Analytics</a>
+                    <a href="#" class="nav-link">Reports</a>
+                    <a href="#" class="nav-link">Settings</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Metrics Grid -->
+        <div class="dashboard-grid">
+            <!-- Revenue Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Revenue</h3>
+                    <span class="status status-success">
+                        <span class="status-dot"></span>
+                        +12.5%
+                    </span>
+                </div>
+                <div class="card-value">$45,678</div>
+                <div class="card-subtitle">vs last month</div>
+            </div>
+
+            <!-- Users Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Active Users</h3>
+                    <span class="status status-warning">
+                        <span class="status-dot"></span>
+                        -2.3%
+                    </span>
+                </div>
+                <div class="card-value">8,234</div>
+                <div class="card-subtitle">currently online</div>
+            </div>
+
+            <!-- Orders Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Orders</h3>
+                    <span class="status status-success">
+                        <span class="status-dot"></span>
+                        +5.7%
+                    </span>
+                </div>
+                <div class="card-value">1,234</div>
+                <div class="card-subtitle">this week</div>
+            </div>
+        </div>
+
+        <!-- Recent Activity Table -->
+        <div class="table-container">
+            <h2 style="margin-bottom: var(--spacing-lg);">Recent Activity</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Action</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>Placed order #1234</td>
+                        <td>2 mins ago</td>
+                        <td><span class="status status-success"><span class="status-dot"></span>Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>Updated profile</td>
+                        <td>15 mins ago</td>
+                        <td><span class="status status-success"><span class="status-dot"></span>Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td>Bob Johnson</td>
+                        <td>Payment failed</td>
+                        <td>1 hour ago</td>
+                        <td><span class="status status-danger"><span class="status-dot"></span>Failed</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Action Button -->
+        <div style="text-align: center; margin-top: var(--spacing-xl);">
+            <a href="#" class="button button-primary">View Full Report</a>
+        </div>
+    </main>
+</body>
+</html>
